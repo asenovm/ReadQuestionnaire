@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.questionTitle = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.answerBox = new System.Windows.Forms.TextBox();
             this.nextQuestionButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -43,14 +43,14 @@
             this.questionTitle.Text = "Question";
             this.questionTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // textBox1
+            // answerBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(38, 115);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(711, 317);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "Моля отговорете на въпроса с не по-малко от 1000 символа";
+            this.answerBox.Location = new System.Drawing.Point(38, 115);
+            this.answerBox.Multiline = true;
+            this.answerBox.Name = "answerBox";
+            this.answerBox.Size = new System.Drawing.Size(711, 317);
+            this.answerBox.TabIndex = 1;
+            this.answerBox.Text = "Моля отговорете на въпроса с не по-малко от 1000 символа";
             // 
             // nextQuestionButton
             // 
@@ -61,6 +61,7 @@
             this.nextQuestionButton.TabIndex = 2;
             this.nextQuestionButton.Text = "Следващ въпрос";
             this.nextQuestionButton.UseVisualStyleBackColor = true;
+            this.nextQuestionButton.Click += new System.EventHandler(this.OnNextQuestionRequired);
             // 
             // MainContainer
             // 
@@ -68,7 +69,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 512);
             this.Controls.Add(this.nextQuestionButton);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.answerBox);
             this.Controls.Add(this.questionTitle);
             this.Name = "MainContainer";
             this.Text = "Read Questionnaire";
@@ -80,7 +81,7 @@
         #endregion
 
         private System.Windows.Forms.Label questionTitle;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox answerBox;
         private System.Windows.Forms.Button nextQuestionButton;
     }
 }
