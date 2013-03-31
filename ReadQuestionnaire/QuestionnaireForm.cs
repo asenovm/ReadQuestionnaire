@@ -9,11 +9,16 @@ using System.Windows.Forms;
 
 namespace ReadQuestionnaire
 {
-    public partial class Form1 : Form
+    public partial class MainContainer : Form
     {
-        public Form1()
+        public MainContainer()
         {
             InitializeComponent();
+
+            Questionnaire questionnaire = new Questionnaire();
+
+            Question currentQuestion = questionnaire.GetNextQuestion();
+            questionTitle.Text = currentQuestion.title;
         }
     }
 }
