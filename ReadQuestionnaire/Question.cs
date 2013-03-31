@@ -14,6 +14,11 @@ namespace ReadQuestionnaire
         public Question(string title) {
             this.title = title;
         }
+
+        public override string ToString()
+        {
+            return title + Environment.NewLine + answer;
+        }
        
     }
 }

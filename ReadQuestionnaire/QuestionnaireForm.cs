@@ -19,12 +19,15 @@ namespace ReadQuestionnaire
 
         private NotificationPrompt prompt;
 
+        private AnswerRecorder recorder;
+
         public MainContainer()
         {
             InitializeComponent();
 
             prompt = new NotificationPrompt();
             questionnaire = new Questionnaire();
+            recorder = new AnswerRecorder();
 
             Question currentQuestion = questionnaire.GetNextQuestion();
             questionTitle.Text = currentQuestion.title;
@@ -39,8 +42,11 @@ namespace ReadQuestionnaire
 
             if (!questionnaire.HasNextQuestion()) {
                 prompt.ShowLastQuestionPrompt();
+                recorder.WriteAnswer(questionTitle.Text, answerBox.Text);
                 return;
             }
+
+            recorder.WriteAnswer(questionTitle.Text, answerBox.Text);
 
             questionTitle.Text = questionnaire.GetNextQuestion().title;
             answerBox.Text = DEFAULT_TEXT_ANSWER_BOX;
