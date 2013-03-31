@@ -28,9 +28,13 @@ namespace ReadQuestionnaire
         private string senderPassword;
 
         public EmailSender() {
+            ReadEmailSenderPassword();
+        }
+
+        private void ReadEmailSenderPassword() {
             StreamReader reader = new StreamReader("email.password");
             senderPassword = reader.ReadToEnd();
-            reader.Close();
+            reader.Close();        
         }
         
 
