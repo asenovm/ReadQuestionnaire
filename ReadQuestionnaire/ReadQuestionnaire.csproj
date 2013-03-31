@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NotificationPrompt.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Questionnaire.cs" />
     <Compile Include="QuestionnaireForm.cs">

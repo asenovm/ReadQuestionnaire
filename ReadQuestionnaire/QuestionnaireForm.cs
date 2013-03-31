@@ -17,10 +17,13 @@ namespace ReadQuestionnaire
 
         private Questionnaire questionnaire;
 
+        private NotificationPrompt prompt;
+
         public MainContainer()
         {
             InitializeComponent();
 
+            prompt = new NotificationPrompt();
             questionnaire = new Questionnaire();
 
             Question currentQuestion = questionnaire.GetNextQuestion();
@@ -30,20 +33,12 @@ namespace ReadQuestionnaire
         private void OnNextQuestionRequired(object sender, EventArgs e)
         {
             if (!IsQuestionAnswered()) {
-                MessageBox.Show("Трябва да въведете поне 1000 символа като отговор на въпроса",
-                                "READ Questionnaire",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                prompt.ShowSmallInputPrompt();
                 return;
             }
 
             if (!questionnaire.HasNextQuestion()) {
-                DialogResult result = MessageBox.Show("Това беше последният въпрос. Благодарим ви за участието!", "READ Questionnaire",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                if (result == DialogResult.OK) {
-                    Close();
-                }
+                prompt.ShowLastQuestionPrompt();
                 return;
             }
 
