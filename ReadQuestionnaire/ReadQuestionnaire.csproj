@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerRecorder.cs" />
+    <Compile Include="EmailSender.cs" />
     <Compile Include="NotificationPrompt.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Questionnaire.cs" />

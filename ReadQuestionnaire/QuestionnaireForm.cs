@@ -21,6 +21,8 @@ namespace ReadQuestionnaire
 
         private AnswerRecorder recorder;
 
+        private EmailSender sender;
+
         public MainContainer()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace ReadQuestionnaire
             prompt = new NotificationPrompt();
             questionnaire = new Questionnaire();
             recorder = new AnswerRecorder();
+            sender = new EmailSender();
 
             Question currentQuestion = questionnaire.GetNextQuestion();
             questionTitle.Text = currentQuestion.title;
@@ -43,6 +46,7 @@ namespace ReadQuestionnaire
             if (!questionnaire.HasNextQuestion()) {
                 prompt.ShowLastQuestionPrompt();
                 recorder.WriteAnswer(questionTitle.Text, answerBox.Text);
+                this.sender.EmailAnswers();
                 return;
             }
 
