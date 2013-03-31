@@ -11,7 +11,7 @@ namespace ReadQuestionnaire
 
         private const string PROMPT_NAME = "READ Questionnaire";
 
-        private const string MESSAGE_SMALL_INPUT = "Трябва да въведете поне 1000 символа като отговор на въпроса";
+        private const string MESSAGE_SMALL_INPUT = "Трябва да въведете поне 300 символа като отговор на въпроса";
 
         private const string MESSAGE_LAST_QUESTION = "Това беше последният въпрос. Благодарим ви за участието!";
 

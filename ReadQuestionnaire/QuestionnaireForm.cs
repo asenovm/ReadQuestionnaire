@@ -11,9 +11,9 @@ namespace ReadQuestionnaire
 {
     public partial class MainContainer : Form
     {
-        private const string DEFAULT_TEXT_ANSWER_BOX = "Моля отговорете на въпроса с не по-малко от 1000 символа";
+        private const string DEFAULT_TEXT_ANSWER_BOX = "Моля отговорете на въпроса с не по-малко от 300 символа";
 
-        private const int LENGTH_ANSWER_MIN = 1000;
+        private const int LENGTH_ANSWER_MIN = 300;
 
         private Questionnaire questionnaire;
 
@@ -34,6 +34,10 @@ namespace ReadQuestionnaire
 
             Question currentQuestion = questionnaire.GetNextQuestion();
             questionTitle.Text = currentQuestion.title;
+
+            characterCount.Text = answerBox.Text.Length.ToString();
+
+            answerBox.Text = DEFAULT_TEXT_ANSWER_BOX;
         }
 
         private void OnNextQuestionRequired(object sender, EventArgs e)
@@ -60,6 +64,11 @@ namespace ReadQuestionnaire
 
         private bool IsQuestionAnswered() {
             return answerBox.Text.Length >= LENGTH_ANSWER_MIN;
+        }
+
+        private void OnAnswerChanged(object sender, EventArgs e)
+        {
+            characterCount.Text = answerBox.Text.Length.ToString();
         }
     }
 }

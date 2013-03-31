@@ -25,6 +25,8 @@ namespace ReadQuestionnaire
 
         private const string MAIL_RECEIVER_NAME = "Read Expriment Distribution List";
 
+        private const string FILE_EMAIL_SENDER_PASSWORD = "email.password";
+
         private string senderPassword;
 
         public EmailSender() {
@@ -32,7 +34,7 @@ namespace ReadQuestionnaire
         }
 
         private void ReadEmailSenderPassword() {
-            StreamReader reader = new StreamReader("email.password");
+            StreamReader reader = new StreamReader(FILE_EMAIL_SENDER_PASSWORD);
             senderPassword = reader.ReadToEnd();
             reader.Close();        
         }
