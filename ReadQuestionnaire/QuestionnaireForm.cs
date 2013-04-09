@@ -32,12 +32,7 @@ namespace ReadQuestionnaire
             recorder = new AnswerRecorder();
             sender = new EmailSender();
 
-            Question currentQuestion = questionnaire.GetNextQuestion();
-            questionTitle.Text = currentQuestion.title;
-
-            characterCount.Text = answerBox.Text.Length.ToString();
-
-            answerBox.Text = DEFAULT_TEXT_ANSWER_BOX;
+            ShowNextQuestion();
         }
 
         private void OnNextQuestionRequired(object sender, EventArgs e)
@@ -56,10 +51,47 @@ namespace ReadQuestionnaire
 
             recorder.WriteAnswer(questionTitle.Text, answerBox.Text);
 
-            questionTitle.Text = questionnaire.GetNextQuestion().title;
+            ShowNextQuestion();
+        }
+
+        private void ShowNextQuestion() {
+            Question nextQuestion = questionnaire.GetNextQuestion();
+            switch (nextQuestion.type) { 
+                case QuestionType.OPEN:
+                    ShowOpenQuestion(nextQuestion);
+                    break;
+                case QuestionType.MULTIPLE_CHOICE:
+                    ShowMultipleChoiceQuestion(nextQuestion);
+                    break;
+                case QuestionType.TABLE:
+                    break;
+            }
+        }
+
+        private void ShowOpenQuestion(Question question) {
+            Console.WriteLine("showing open question!");
+            questionHolder.Visible = false;
+            questionHolder.Controls.Clear();
+
+            answerBox.Visible = true;
+
+            questionTitle.Text = question.title;
             answerBox.Text = DEFAULT_TEXT_ANSWER_BOX;
             answerBox.Focus();
             answerBox.SelectAll();
+        }
+
+        private void ShowMultipleChoiceQuestion(Question question) {
+            Console.WriteLine("showing multiple choice question!");
+            answerBox.Visible = false;
+            questionHolder.Visible = true;
+
+            questionTitle.Text = question.title;
+            foreach (string answer in question.GetPossibleAnswers()) {
+                RadioButton button = new RadioButton();
+                button.Text = answer;
+                questionHolder.Controls.Add(button);
+            }
         }
 
         private bool IsQuestionAnswered() {

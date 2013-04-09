@@ -33,6 +33,7 @@
             this.nextQuestionButton = new System.Windows.Forms.Button();
             this.characterCount = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.questionHolder = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // questionTitle
@@ -87,11 +88,19 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Въведени до момента символи: ";
             // 
+            // questionHolder
+            // 
+            this.questionHolder.Location = new System.Drawing.Point(38, 115);
+            this.questionHolder.Name = "questionHolder";
+            this.questionHolder.Size = new System.Drawing.Size(711, 317);
+            this.questionHolder.TabIndex = 5;
+            // 
             // MainContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 512);
+            this.Controls.Add(this.questionHolder);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.characterCount);
             this.Controls.Add(this.nextQuestionButton);
@@ -111,6 +120,7 @@
         private System.Windows.Forms.Button nextQuestionButton;
         private System.Windows.Forms.Label characterCount;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel questionHolder;
     }
 }
 

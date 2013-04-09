@@ -7,3 +7,5 @@ c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQues
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\GenerateResource.write.1.tlog
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ReadQuestionnaire.exe
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ReadQuestionnaire.pdb
+C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\Newtonsoft.Json.xml

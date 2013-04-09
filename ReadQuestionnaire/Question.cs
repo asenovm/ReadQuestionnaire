@@ -9,15 +9,24 @@ namespace ReadQuestionnaire
     {
         public string title;
 
-        public string answer;
+        public string possibleAnswers;
 
-        public Question(string title) {
+        public QuestionType type;
+
+        public Question(string title, QuestionType type) {
             this.title = title;
+            this.type = type;
         }
 
-        public override string ToString()
-        {
-            return title + Environment.NewLine + answer;
+        public LinkedList<string> GetPossibleAnswers() {
+            LinkedList<string> result = new LinkedList<string>();
+            if (possibleAnswers != null) {
+                string[] answers = possibleAnswers.Split(',');
+                foreach (string answer in answers) {
+                    result.AddLast(answer);
+                }
+            }
+            return result;
         }
        
     }

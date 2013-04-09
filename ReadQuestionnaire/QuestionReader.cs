@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace ReadQuestionnaire
 {
@@ -20,7 +21,9 @@ namespace ReadQuestionnaire
             StreamReader reader = new StreamReader(filePath, Encoding.GetEncoding(QUESTION_ENCODING));
             string currentLine = null;
             while ((currentLine = reader.ReadLine()) != null) {
-                questions.AddLast(new Question(currentLine));
+                Question question = JsonConvert.DeserializeObject<Question>(currentLine);
+                questions.AddLast(question);
+                Console.WriteLine(question.type + " " + question.title + " " + question.possibleAnswers);
             }
             reader.Close();
         }
