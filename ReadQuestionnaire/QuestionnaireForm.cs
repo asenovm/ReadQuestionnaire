@@ -182,7 +182,7 @@ namespace ReadQuestionnaire
 
         private bool IsQuestionAnswered()
         {
-            return answerBox.Text.Length >= LENGTH_ANSWER_MIN;
+            return !answerBox.Visible || answerBox.Text.Length >= LENGTH_ANSWER_MIN;
         }
 
         private void OnAnswerChanged(object sender, EventArgs e)
