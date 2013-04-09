@@ -15,7 +15,7 @@ namespace ReadQuestionnaire
 
         private const int LENGTH_ANSWER_MIN = 300;
 
-        private LinkedList<RadioButton> radioButtons;
+        private RadioGroup group;
 
         private Questionnaire questionnaire;
 
@@ -33,7 +33,7 @@ namespace ReadQuestionnaire
             questionnaire = new Questionnaire();
             recorder = new AnswerRecorder();
             sender = new EmailSender();
-            radioButtons = new LinkedList<RadioButton>();
+            group = new RadioGroup();
 
             ShowNextQuestion();
         }
@@ -113,7 +113,7 @@ namespace ReadQuestionnaire
                 radioButton.CheckedChanged += OnRadioButtonChecked;
                 radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
                 layout.Controls.Add(radioButton);
-                radioButtons.AddLast(radioButton);
+                group.AddRadioButton(radioButton);
 
                 Label label = new Label();
                 label.Font = new Font(FontFamily.GenericSansSerif, 10);
@@ -130,19 +130,7 @@ namespace ReadQuestionnaire
 
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
-            RadioButton clickedButton = (RadioButton)sender;
-            if (!clickedButton.Checked)
-            {
-                return;
-            }
-
-            foreach (var button in radioButtons)
-            {
-                if (button != clickedButton)
-                {
-                    button.Checked = false;
-                }
-            }
+            group.OnCheckedChange(sender as RadioButton);
         }
 
         private bool IsQuestionAnswered()
