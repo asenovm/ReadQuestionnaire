@@ -21,7 +21,7 @@ namespace ReadQuestionnaire
         public LinkedList<string> GetPossibleAnswers() {
             LinkedList<string> result = new LinkedList<string>();
             if (possibleAnswers != null) {
-                string[] answers = possibleAnswers.Split(',');
+                string[] answers = possibleAnswers.Split('\t');
                 foreach (string answer in answers) {
                     result.AddLast(answer);
                 }

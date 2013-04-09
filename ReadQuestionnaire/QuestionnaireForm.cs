@@ -15,6 +15,8 @@ namespace ReadQuestionnaire
 
         private const int LENGTH_ANSWER_MIN = 300;
 
+        private LinkedList<RadioButton> radioButtons;
+
         private Questionnaire questionnaire;
 
         private NotificationPrompt prompt;
@@ -31,18 +33,21 @@ namespace ReadQuestionnaire
             questionnaire = new Questionnaire();
             recorder = new AnswerRecorder();
             sender = new EmailSender();
+            radioButtons = new LinkedList<RadioButton>();
 
             ShowNextQuestion();
         }
 
         private void OnNextQuestionRequired(object sender, EventArgs e)
         {
-            if (!IsQuestionAnswered()) {
+            if (!IsQuestionAnswered())
+            {
                 prompt.ShowSmallInputPrompt();
                 return;
             }
 
-            if (!questionnaire.HasNextQuestion()) {
+            if (!questionnaire.HasNextQuestion())
+            {
                 prompt.ShowLastQuestionPrompt();
                 recorder.WriteAnswer(questionTitle.Text, answerBox.Text);
                 this.sender.EmailAnswers();
@@ -54,9 +59,11 @@ namespace ReadQuestionnaire
             ShowNextQuestion();
         }
 
-        private void ShowNextQuestion() {
+        private void ShowNextQuestion()
+        {
             Question nextQuestion = questionnaire.GetNextQuestion();
-            switch (nextQuestion.type) { 
+            switch (nextQuestion.type)
+            {
                 case QuestionType.OPEN:
                     ShowOpenQuestion(nextQuestion);
                     break;
@@ -68,11 +75,12 @@ namespace ReadQuestionnaire
             }
         }
 
-        private void ShowOpenQuestion(Question question) {
-            Console.WriteLine("showing open question!");
+        private void ShowOpenQuestion(Question question)
+        {
             questionHolder.Visible = false;
             questionHolder.Controls.Clear();
 
+            characterCount.Visible = true;
             answerBox.Visible = true;
 
             questionTitle.Text = question.title;
@@ -81,20 +89,64 @@ namespace ReadQuestionnaire
             answerBox.SelectAll();
         }
 
-        private void ShowMultipleChoiceQuestion(Question question) {
-            Console.WriteLine("showing multiple choice question!");
+        private void ShowMultipleChoiceQuestion(Question question)
+        {
             answerBox.Visible = false;
+            characterCount.Visible = false;
             questionHolder.Visible = true;
 
             questionTitle.Text = question.title;
-            foreach (string answer in question.GetPossibleAnswers()) {
-                RadioButton button = new RadioButton();
-                button.Text = answer;
-                questionHolder.Controls.Add(button);
+
+            foreach (string answer in question.GetPossibleAnswers())
+            {
+                FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                radioButtons.AddLast(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+                questionHolder.Controls.Add(layout);
             }
         }
 
-        private bool IsQuestionAnswered() {
+        private void OnRadioButtonChecked(object sender, EventArgs e)
+        {
+            RadioButton clickedButton = (RadioButton)sender;
+            if (!clickedButton.Checked)
+            {
+                return;
+            }
+
+            foreach (var button in radioButtons)
+            {
+                if (button != clickedButton)
+                {
+                    button.Checked = false;
+                }
+            }
+        }
+
+        private bool IsQuestionAnswered()
+        {
             return answerBox.Text.Length >= LENGTH_ANSWER_MIN;
         }
 
