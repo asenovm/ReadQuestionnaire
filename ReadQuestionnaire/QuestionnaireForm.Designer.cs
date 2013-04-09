@@ -32,7 +32,7 @@
             this.answerBox = new System.Windows.Forms.TextBox();
             this.nextQuestionButton = new System.Windows.Forms.Button();
             this.characterCount = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.characterCountLabel = new System.Windows.Forms.Label();
             this.questionHolder = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
@@ -78,15 +78,15 @@
             this.characterCount.TabIndex = 3;
             this.characterCount.Text = "0";
             // 
-            // label1
+            // characterCountLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(268, 81);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(259, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Въведени до момента символи: ";
+            this.characterCountLabel.AutoSize = true;
+            this.characterCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.characterCountLabel.Location = new System.Drawing.Point(268, 81);
+            this.characterCountLabel.Name = "characterCountLabel";
+            this.characterCountLabel.Size = new System.Drawing.Size(259, 20);
+            this.characterCountLabel.TabIndex = 4;
+            this.characterCountLabel.Text = "Въведени до момента символи: ";
             // 
             // questionHolder
             // 
@@ -101,7 +101,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(831, 512);
             this.Controls.Add(this.questionHolder);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.characterCountLabel);
             this.Controls.Add(this.characterCount);
             this.Controls.Add(this.nextQuestionButton);
             this.Controls.Add(this.answerBox);
@@ -123,7 +123,7 @@
         private System.Windows.Forms.TextBox answerBox;
         private System.Windows.Forms.Button nextQuestionButton;
         private System.Windows.Forms.Label characterCount;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label characterCountLabel;
         private System.Windows.Forms.FlowLayoutPanel questionHolder;
     }
 }

@@ -639,3 +639,289 @@ SizeF size = g.MeasureString(text, lbl.Font, 495);SizeF size = g.MeasureString(t
 
 В течение на играта, формирахте ли лоялност към определен доставчик?
 Моля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символаМоля отговорете на въпроса с не по-малко от 300 символа
+
+Опишете как вземахте решения за избор на доставчик.
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Имахте ли стратегия?
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Ако имахте стратегия, кога и как се формира?
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Използвахте ли различни стратегии в течение на играта?
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Какво Ви караше да променяте стратегията си в течение на играта? (ако ДА)
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Опишете как вземахте решения за избор на доставчик.
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Опишете как вземахте решения за избор на доставчик.
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Имахте ли стратегия?
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Ако имахте стратегия, кога и как се формира?
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Използвахте ли различни стратегии в течение на играта?
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);
+
+Какво Ви караше да променяте стратегията си в течение на играта? (ако ДА)
+FlowLayoutPanel layout = new FlowLayoutPanel();
+                layout.Margin = new Padding(2, 0, 0, 0);
+                layout.Padding = new Padding(0, 0, 5, 0);
+                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+                layout.Height = questionHolder.Height;
+                layout.BorderStyle = BorderStyle.FixedSingle;
+                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+                layout.FlowDirection = FlowDirection.TopDown;
+
+
+                RadioButton radioButton = new RadioButton();
+                radioButton.CheckedChanged += OnRadioButtonChecked;
+                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+                layout.Controls.Add(radioButton);
+                group.AddRadioButton(radioButton);
+
+                Label label = new Label();
+                label.Font = new Font(FontFamily.GenericSansSerif, 10);
+                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+                label.Width = layout.Width;
+                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+                label.Text = answer;
+                layout.Controls.Add(label);

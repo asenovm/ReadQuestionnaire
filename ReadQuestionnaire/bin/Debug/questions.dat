@@ -1,3 +1,4 @@
+{"title" : "Table test", "type" : "table", "possibleAnswers" : "first	second	third	fourth", "header" : "Фактор	Ранг"}
 {"title" : "Опишете как вземахте решения за избор на доставчик.", "type" : "open"}
 {"title" : "Имахте ли стратегия?", "type" : "MULTIPLE_CHOICE", "possibleAnswers" : "Да	Не"}
 {"title" : "Ако имахте стратегия, кога и как се формира?", "type" : "open"}

@@ -59,9 +59,20 @@ namespace ReadQuestionnaire
             ShowNextQuestion();
         }
 
+        private void ResetLayout()
+        {
+            questionHolder.Controls.Clear();
+            questionHolder.Visible = false;
+
+            answerBox.Visible = false;
+            characterCount.Visible = false;
+            characterCountLabel.Visible = false;
+        }
+
         private void ShowNextQuestion()
         {
             Question nextQuestion = questionnaire.GetNextQuestion();
+            ResetLayout();
             switch (nextQuestion.type)
             {
                 case QuestionType.OPEN:
@@ -71,15 +82,14 @@ namespace ReadQuestionnaire
                     ShowMultipleChoiceQuestion(nextQuestion);
                     break;
                 case QuestionType.TABLE:
+                    ShowTableQuestion(nextQuestion);
                     break;
             }
         }
 
         private void ShowOpenQuestion(Question question)
         {
-            questionHolder.Visible = false;
-            questionHolder.Controls.Clear();
-
+            characterCountLabel.Visible = true;
             characterCount.Visible = true;
             answerBox.Visible = true;
 
@@ -89,44 +99,81 @@ namespace ReadQuestionnaire
             answerBox.SelectAll();
         }
 
-        private void ShowMultipleChoiceQuestion(Question question)
+        private void ShowTableQuestion(Question question)
         {
-            answerBox.Visible = false;
-            characterCount.Visible = false;
             questionHolder.Visible = true;
 
+            TableLayoutPanel table = new TableLayoutPanel();
+            table.Width = questionHolder.Width - 5;
+            table.Height = questionHolder.Height - 5;
+            table.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+
+            LinkedList<string> headers = question.GetHeaders();
+            for (int i = 0; i < headers.Count; ++i)
+            {
+                Label label = new Label();
+                label.Text = headers.ElementAt(i);
+                table.Controls.Add(label, i, 0);
+                label.Dock = DockStyle.Fill;
+                label.TextAlign = ContentAlignment.MiddleCenter;
+            }
+
+            for (int i = 0; i < question.GetPossibleAnswers().Count; ++i)
+            {
+                string answer = question.GetPossibleAnswers().ElementAt(i);
+                Label label = new Label();
+                label.Text = answer;
+                label.AutoSize = true;
+                table.Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+                TextBox textBox = new TextBox();
+                textBox.Dock = DockStyle.Fill;
+                table.Controls.Add(textBox, 1, i + (headers.Count > 0 ? 1 : 0));
+            }
+
+            questionHolder.Controls.Add(table);
+        }
+
+        private void ShowMultipleChoiceQuestion(Question question)
+        {
+            questionHolder.Visible = true;
             questionTitle.Text = question.title;
 
             foreach (string answer in question.GetPossibleAnswers())
             {
-                FlowLayoutPanel layout = new FlowLayoutPanel();
-                layout.Margin = new Padding(2, 0, 0, 0);
-                layout.Padding = new Padding(0, 0, 5, 0);
-                layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
-                layout.Height = questionHolder.Height;
-                layout.BorderStyle = BorderStyle.FixedSingle;
-                layout.BackColor = Color.FromArgb(255, 50, 205, 50);
-                layout.FlowDirection = FlowDirection.TopDown;
-
-
-                RadioButton radioButton = new RadioButton();
-                radioButton.CheckedChanged += OnRadioButtonChecked;
-                radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
-                layout.Controls.Add(radioButton);
-                group.AddRadioButton(radioButton);
-
-                Label label = new Label();
-                label.Font = new Font(FontFamily.GenericSansSerif, 10);
-                SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
-                label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
-                label.Width = layout.Width;
-                label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
-                label.Text = answer;
-                layout.Controls.Add(label);
-
-                questionHolder.Controls.Add(layout);
+                questionHolder.Controls.Add(createMultipleChoiceForm(question, answer));
             }
         }
+
+        private FlowLayoutPanel createMultipleChoiceForm(Question question, string answer)
+        {
+            FlowLayoutPanel layout = new FlowLayoutPanel();
+            layout.Margin = new Padding(2, 0, 0, 0);
+            layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
+            layout.Height = questionHolder.Height;
+            layout.BorderStyle = BorderStyle.FixedSingle;
+            layout.BackColor = Color.FromArgb(255, 50, 205, 50);
+            layout.FlowDirection = FlowDirection.TopDown;
+
+
+            RadioButton radioButton = new RadioButton();
+            radioButton.CheckedChanged += OnRadioButtonChecked;
+            radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
+            layout.Controls.Add(radioButton);
+            group.AddRadioButton(radioButton);
+
+            Label label = new Label();
+            label.Font = new Font(FontFamily.GenericSansSerif, 10);
+            SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
+            label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
+            label.Width = layout.Width;
+            label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
+            label.Text = answer;
+            layout.Controls.Add(label);
+
+            return layout;
+        }
+
 
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
