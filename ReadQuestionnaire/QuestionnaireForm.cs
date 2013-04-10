@@ -181,37 +181,11 @@ namespace ReadQuestionnaire
 
             foreach (string answer in question.GetPossibleAnswers())
             {
-                questionHolder.Controls.Add(createMultipleChoiceForm(question, answer));
+                QuestionRadioControl control = ControlsFactory.from(question, questionHolder, answer) as QuestionRadioControl;
+                control.RadioButton.CheckedChanged += OnRadioButtonChecked;
+                group.AddRadioButton(control.RadioButton);
+                questionHolder.Controls.Add(control);
             }
-        }
-
-        private FlowLayoutPanel createMultipleChoiceForm(Question question, string answer)
-        {
-            FlowLayoutPanel layout = new FlowLayoutPanel();
-            layout.Margin = new Padding(2, 0, 0, 0);
-            layout.Width = (questionHolder.Width - question.GetPossibleAnswers().Count * 2) / question.GetPossibleAnswers().Count;
-            layout.Height = questionHolder.Height;
-            layout.BorderStyle = BorderStyle.FixedSingle;
-            layout.BackColor = Color.FromArgb(255, 50, 205, 50);
-            layout.FlowDirection = FlowDirection.TopDown;
-
-
-            RadioButton radioButton = new RadioButton();
-            radioButton.CheckedChanged += OnRadioButtonChecked;
-            radioButton.Margin = new Padding(layout.Width / 2, layout.Height / 2 - radioButton.Height / 2, 0, 0);
-            layout.Controls.Add(radioButton);
-            group.AddRadioButton(radioButton);
-
-            Label label = new Label();
-            label.Font = new Font(FontFamily.GenericSansSerif, 10);
-            SizeF size = CreateGraphics().MeasureString(answer, label.Font, 495);
-            label.Margin = new Padding(layout.Width / 2 - (int)size.Width / 2, 0, 0, 0);
-            label.Width = layout.Width;
-            label.Height = layout.Height - radioButton.Location.Y - radioButton.Height - 5;
-            label.Text = answer;
-            layout.Controls.Add(label);
-
-            return layout;
         }
 
 
