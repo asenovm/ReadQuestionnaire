@@ -34,6 +34,11 @@ namespace ReadQuestionnaire
 
         }
 
+        private int GetAnswerHeight(Question question)
+        {
+            return (2 * Height / 3) / Math.Max(1, question.GetPossibleAnswers().Count) - PADDING_FORM;
+        }
+
         private void AttachAnswerLabel(Question question, int row)
         {
             LinkedList<string> headers = question.GetHeaders();
@@ -44,13 +49,14 @@ namespace ReadQuestionnaire
             label.Text = answer;
             label.Margin = new Padding(0);
             label.BackColor = BackgroundColor.YELLOW;
-            label.Height = (2 * Height / 3) / question.GetPossibleAnswers().Count - PADDING_FORM;
-            Controls.Add(label, 0, row + (headers.Count > 0 ? 1 : 0));
+            label.Height = GetAnswerHeight(question);
+            Controls.Add(label, 0, row + Math.Min(headers.Count,1));
         }
 
         private void AttachAnswerFields(Question question, int row)
         {
             LinkedList<string> headers = question.GetHeaders();
+            LinkedList<string> answers = question.GetPossibleAnswers();
 
             for (int j = 0; j < headers.Count; ++j)
             {
@@ -71,9 +77,9 @@ namespace ReadQuestionnaire
                 control.Dock = DockStyle.Fill;
                 control.Margin = new Padding(0);
                 control.Width = Width / (headers.Count + 1);
-                control.Height = (2 * Height / 3) / Math.Max(1, question.GetPossibleAnswers().Count);
+                control.Height = GetAnswerHeight(question);
 
-                Controls.Add(control, j + (question.GetPossibleAnswers().Count > 0 ? 1 : 0), row + 1);
+                Controls.Add(control, j + (Math.Min(answers.Count,1)), row + 1);
             }
         }
 
