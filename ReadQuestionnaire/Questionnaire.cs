@@ -11,16 +11,24 @@ namespace ReadQuestionnaire
         private const string QUESTIONS_FILE = "questions.dat";
 
         private QuestionReader reader;
-        
-        public Questionnaire() {
+
+        public Questionnaire()
+        {
             reader = new QuestionReader(QUESTIONS_FILE);
         }
 
-        public Question GetNextQuestion() {
+        public Question GetCurrentQuestion()
+        {
+            return reader.GetCurrentQuestion();
+        }
+
+        public Question GetNextQuestion()
+        {
             return reader.GetNextQuestion();
         }
 
-        public bool HasNextQuestion() {
+        public bool HasNextQuestion()
+        {
             return reader.HasNextQuestion();
         }
     }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace ReadQuestionnaire
 {
@@ -40,11 +41,38 @@ namespace ReadQuestionnaire
 
         private void OnNextQuestionRequired(object sender, EventArgs e)
         {
-            if (!IsQuestionAnswered())
+            Question currentQuestion = questionnaire.GetCurrentQuestion();
+            switch (currentQuestion.type)
             {
-                prompt.ShowSmallInputPrompt();
-                return;
+                case QuestionType.OPEN:
+                    if (!IsOpenQuestionAnswered())
+                    {
+                        prompt.ShowSmallInputPrompt();
+                        return;
+                    }
+                    break;
+                case QuestionType.MULTIPLE_CHOICE:
+                    if (!IsMultipleChoiceQuestionAnswered())
+                    {
+                        prompt.ShowNotCheckedRadioPrompt();
+                        return;
+                    }
+                    break;
+                case QuestionType.TABLE:
+                    if (!IsTableQuestionAnswered())
+                    {
+                        if (currentQuestion.answerType == AnswerType.RADIO)
+                        {
+                            prompt.ShowNotCheckedRadioPrompt();
+                        }
+                        else {
+                            prompt.ShowNoInputPrompt();
+                        }
+                        return;
+                    }
+                    break;
             }
+
 
             if (!questionnaire.HasNextQuestion())
             {
@@ -67,6 +95,7 @@ namespace ReadQuestionnaire
             answerBox.Visible = false;
             characterCount.Visible = false;
             characterCountLabel.Visible = false;
+            group.Clear();
         }
 
         private void ShowNextQuestion()
@@ -102,7 +131,7 @@ namespace ReadQuestionnaire
         private void ShowTableQuestion(Question question)
         {
             questionHolder.Visible = true;
-            questionHolder.Controls.Add(ControlsFactory.from(question,questionHolder, ""));
+            questionHolder.Controls.Add(ControlsFactory.from(question, questionHolder, ""));
         }
 
         private void ShowMultipleChoiceQuestion(Question question)
@@ -124,14 +153,42 @@ namespace ReadQuestionnaire
             group.OnCheckedChange(sender as RadioButton);
         }
 
-        private bool IsQuestionAnswered()
+        private bool IsOpenQuestionAnswered()
         {
-            return !answerBox.Visible || answerBox.Text.Length >= LENGTH_ANSWER_MIN;
+            return answerBox.Text.Length >= LENGTH_ANSWER_MIN;
         }
 
         private void OnAnswerChanged(object sender, EventArgs e)
         {
             characterCount.Text = answerBox.Text.Length.ToString();
+        }
+
+        private bool IsMultipleChoiceQuestionAnswered()
+        {
+            return group.HasChecked();
+        }
+
+        private bool IsTableQuestionAnswered()
+        {
+            IEnumerator controls = questionHolder.Controls.GetEnumerator();
+            controls.MoveNext();
+            Control table = (Control)controls.Current;
+            foreach (Control control in table.Controls)
+            {
+                if (control is TextBox)
+                {
+                    TextBox box = control as TextBox;
+                    if (box.Text.Length == 0)
+                    {
+                        return false;
+                    }
+                }
+                else if (control is RadioButton)
+                {
+                    Console.WriteLine("in the radio button if!!!!");
+                }
+            }
+            return true;
         }
     }
 }

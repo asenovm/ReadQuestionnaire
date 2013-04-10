@@ -58,7 +58,9 @@ namespace ReadQuestionnaire
             LinkedList<string> headers = question.GetHeaders();
             LinkedList<string> answers = question.GetPossibleAnswers();
 
-            for (int j = 0; j < headers.Count; ++j)
+            int limit = headers.First.Value.Length == 0 || answers.Count == 0 ? headers.Count : headers.Count - 1;
+
+            for (int j = 0; j < limit; ++j)
             {
                 Control control = null;
                 if (question.answerType == AnswerType.TEXTBOX)

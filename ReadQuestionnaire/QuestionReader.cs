@@ -15,12 +15,14 @@ namespace ReadQuestionnaire
 
         private int readQuestions;
 
-        public QuestionReader(string filePath) {
+        public QuestionReader(string filePath)
+        {
             questions = new LinkedList<Question>();
 
             StreamReader reader = new StreamReader(filePath, Encoding.GetEncoding(QUESTION_ENCODING));
             string currentLine = null;
-            while ((currentLine = reader.ReadLine()) != null) {
+            while ((currentLine = reader.ReadLine()) != null)
+            {
                 Question question = JsonConvert.DeserializeObject<Question>(currentLine);
                 questions.AddLast(question);
                 Console.WriteLine(question.type + " " + question.title + " " + question.possibleAnswers);
@@ -28,7 +30,13 @@ namespace ReadQuestionnaire
             reader.Close();
         }
 
-        public Question GetNextQuestion() {
+        public Question GetCurrentQuestion()
+        {
+            return questions.ElementAt(readQuestions - 1);
+        }
+
+        public Question GetNextQuestion()
+        {
             return questions.ElementAt(readQuestions++);
         }
 

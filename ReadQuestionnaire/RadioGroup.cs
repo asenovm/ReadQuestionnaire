@@ -20,6 +20,18 @@ namespace ReadQuestionnaire
             buttons.AddLast(button);
         }
 
+        public bool HasChecked()
+        {
+            foreach (RadioButton button in buttons)
+            {
+                if (button.Checked)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void OnCheckedChange(RadioButton clicked)
         {
             if (!clicked.Checked)
@@ -34,6 +46,11 @@ namespace ReadQuestionnaire
                     button.Checked = false;
                 }
             }
+        }
+
+        public void Clear()
+        {
+            buttons.Clear();
         }
 
     }
