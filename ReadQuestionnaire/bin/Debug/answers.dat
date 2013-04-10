@@ -2345,3 +2345,157 @@ ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(quest
 
 Подредете следните фактори според полезността им за вземането на Вашите решения. Поставете единица пред този, който е бил най-полезен, двойка – пред следващия по полезност и продължете по същия начин, докато поставите осмица пред фактора, който е бил най-малко полезен.
 ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)ControlsFactory.from(question, questionHolder, answer)
+
+Опишете как вземахте решения за избор на доставчик.
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Имахте ли стратегия?
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Ако имахте стратегия, кога и как се формира?
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Използвахте ли различни стратегии в течение на играта?
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Какво Ви караше да променяте стратегията си в течение на играта? (ако ДА)
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+След края на играта бихте ли променили стратегията, която сте използвали?
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Оценете четиримата доставчици по следната скала според степента, в която сте удовлетворени от поведението им:
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+В течение на играта, формирахте ли лоялност към определен доставчик?
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Следните фактори оказваха ли влияние при избор на определен доставчик?
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Как, според Вас, повлияха следните фактори на Вашия резултат?
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Подредете следните фактори според полезността им за вземането на Вашите решения. Поставете единица пред този, който е бил най-полезен, двойка – пред следващия по полезност и продължете по същия начин, докато поставите осмица пред фактора, който е бил най-малко полезен.
+parent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, questionparent, question
+
+Опишете как вземахте решения за избор на доставчик.
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+Имахте ли стратегия?
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+Ако имахте стратегия, кога и как се формира?
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+Използвахте ли различни стратегии в течение на играта?
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+Какво Ви караше да променяте стратегията си в течение на играта? (ако ДА)
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+След края на играта бихте ли променили стратегията, която сте използвали?
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+Оценете четиримата доставчици по следната скала според степента, в която сте удовлетворени от поведението им:
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+В течение на играта, формирахте ли лоялност към определен доставчик?
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+Следните фактори оказваха ли влияние при избор на определен доставчик?
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+Как, според Вас, повлияха следните фактори на Вашия резултат?
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
+
+Подредете следните фактори според полезността им за вземането на Вашите решения. Поставете единица пред този, който е бил най-полезен, двойка – пред следващия по полезност и продължете по същия начин, докато поставите осмица пред фактора, който е бил най-малко полезен.
+Моля отговорете на въпроса с не по-малко от 300 символаstring answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));string answer = answers.ElementAt(i);
+                Label label = new Label();
+                label.Dock = DockStyle.Fill;
+                label.Text = answer;
+                Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));

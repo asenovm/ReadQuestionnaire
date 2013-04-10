@@ -15,9 +15,9 @@ namespace ReadQuestionnaire
                 case QuestionType.MULTIPLE_CHOICE:
                     return new QuestionRadioControl(parent, question, answer);
                 case QuestionType.TABLE:
-                    return new QuestionTable();
+                    return new QuestionTable(parent, question);
                 default:
-                    return new QuestionTable();
+                    return new QuestionTable(parent, question);
             }
         }
     }

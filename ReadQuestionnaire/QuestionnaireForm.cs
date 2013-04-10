@@ -101,78 +101,8 @@ namespace ReadQuestionnaire
 
         private void ShowTableQuestion(Question question)
         {
-
             questionHolder.Visible = true;
-
-            TableLayoutPanel table = new TableLayoutPanel();
-            table.Width = questionHolder.Width - 5;
-            table.Height = questionHolder.Height - 5;
-            table.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-
-            LinkedList<string> headers = question.GetHeaders();
-            for (int i = 0; i < headers.Count; ++i)
-            {
-                Label label = new Label();
-                label.Text = headers.ElementAt(i);
-                table.Controls.Add(label, i, 0);
-                label.TextAlign = ContentAlignment.MiddleCenter;
-                label.BackColor = Color.Red;
-                label.Margin = new Padding(0);
-                label.BackColor = Color.FromArgb(255, 226, 233, 116);
-                label.Width = table.Width / headers.Count;
-            }
-
-            LinkedList<string> answers = question.GetPossibleAnswers();
-
-            for (int i = 0; i < answers.Count; ++i)
-            {
-                string answer = answers.ElementAt(i);
-                Label label = new Label();
-                label.Dock = DockStyle.Fill;
-                label.Text = answer;
-                table.Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
-
-                for (int j = 0; j < headers.Count - 1; ++j)
-                {
-                    Control control = null;
-                    if (question.answerType == AnswerType.TEXTBOX)
-                    {
-                        control = new TextBox();
-                        control.Dock = DockStyle.Fill;
-                    }
-                    else
-                    {
-                        control = new RadioButton();
-                    }
-
-                    table.Controls.Add(control, j, i + (headers.Count > 0 ? 1 : 0));
-                }
-            }
-
-            if (answers.Count == 0)
-            {
-                for (int j = 0; j < headers.Count; ++j)
-                {
-                    Control control = null;
-                    if (question.answerType == AnswerType.TEXTBOX)
-                    {
-                        control = new TextBox();
-                        control.Dock = DockStyle.Fill;
-                    }
-                    else
-                    {
-                        control = new RadioButton();
-                    }
-                    control.BackColor = Color.FromArgb(255, 50, 205, 50);
-                    control.Anchor = AnchorStyles.None;
-                    control.Dock = DockStyle.Fill;
-                    control.Margin = new Padding(0);
-                    control.Padding = new Padding(control.Width/2 + 20, 0, 0, 0);
-                    table.Controls.Add(control, j, 1);
-                }
-            }
-
-            questionHolder.Controls.Add(table);
+            questionHolder.Controls.Add(ControlsFactory.from(question,questionHolder, ""));
         }
 
         private void ShowMultipleChoiceQuestion(Question question)
