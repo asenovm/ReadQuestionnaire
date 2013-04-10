@@ -142,7 +142,7 @@ namespace ReadQuestionnaire
             {
                 QuestionRadioControl control = ControlsFactory.from(question, questionHolder, answer) as QuestionRadioControl;
                 control.RadioButton.CheckedChanged += OnRadioButtonChecked;
-                group.AddRadioButton(control.RadioButton);
+                group.AddButton(control.RadioButton);
                 questionHolder.Controls.Add(control);
             }
         }
@@ -172,23 +172,8 @@ namespace ReadQuestionnaire
         {
             IEnumerator controls = questionHolder.Controls.GetEnumerator();
             controls.MoveNext();
-            Control table = (Control)controls.Current;
-            foreach (Control control in table.Controls)
-            {
-                if (control is TextBox)
-                {
-                    TextBox box = control as TextBox;
-                    if (box.Text.Length == 0)
-                    {
-                        return false;
-                    }
-                }
-                else if (control is RadioButton)
-                {
-                    Console.WriteLine("in the radio button if!!!!");
-                }
-            }
-            return true;
+            QuestionTable table = (QuestionTable)controls.Current;
+            return table.IsFilled();
         }
     }
 }

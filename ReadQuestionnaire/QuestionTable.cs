@@ -11,8 +11,15 @@ namespace ReadQuestionnaire
     {
         private const int PADDING_FORM = 5;
 
+        private LinkedList<RadioGroup> radioGroups;
+
+        private TextBoxGroup textBoxGroup;
+
         public QuestionTable(Control parent, Question question)
         {
+            radioGroups = new LinkedList<RadioGroup>();
+            textBoxGroup = new TextBoxGroup();
+
             Width = parent.Width - PADDING_FORM;
             Height = parent.Height - PADDING_FORM;
             CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
@@ -34,6 +41,15 @@ namespace ReadQuestionnaire
 
         }
 
+        public bool IsFilled() {
+            bool areRadioGroupsFilled = true;
+            foreach (RadioGroup group in radioGroups) {
+                areRadioGroupsFilled = areRadioGroupsFilled && group.HasChecked();
+            }
+
+            return areRadioGroupsFilled || textBoxGroup.IsFilled();
+        }
+
         private int GetAnswerHeight(Question question)
         {
             return (2 * Height / 3) / Math.Max(1, question.GetPossibleAnswers().Count) - PADDING_FORM;
@@ -50,38 +66,28 @@ namespace ReadQuestionnaire
             label.Margin = new Padding(0);
             label.BackColor = BackgroundColor.YELLOW;
             label.Height = GetAnswerHeight(question);
-            Controls.Add(label, 0, row + Math.Min(headers.Count,1));
+            Controls.Add(label, 0, row + Math.Min(headers.Count, 1));
         }
 
         private void AttachAnswerFields(Question question, int row)
         {
             LinkedList<string> headers = question.GetHeaders();
             LinkedList<string> answers = question.GetPossibleAnswers();
+            RadioGroup group = new RadioGroup();
 
             int limit = headers.First.Value.Length == 0 || answers.Count == 0 ? headers.Count : headers.Count - 1;
 
             for (int j = 0; j < limit; ++j)
             {
-                Control control = null;
-                if (question.answerType == AnswerType.TEXTBOX)
-                {
-                    control = new TextBox();
-                    (control as TextBox).Multiline = true;
-                }
-                else
-                {
-                    control = new RadioButton();
-                    control.Padding = new Padding(control.Width / 2, 0, 0, 0);
-                    control.BackColor = BackgroundColor.GREEN;
-                }
 
-                control.Anchor = AnchorStyles.None;
-                control.Dock = DockStyle.Fill;
-                control.Margin = new Padding(0);
-                control.Width = Width / (headers.Count + 1);
-                control.Height = GetAnswerHeight(question);
+                Panel container = GetContainer(question, headers);
+                Control control = GetControl(question, headers, group);
 
-                Controls.Add(control, j + (Math.Min(answers.Count,1)), row + 1);
+                container.Controls.Add(control);
+
+                Controls.Add(container, j + (Math.Min(answers.Count, 1)), row + 1);
+
+                radioGroups.AddLast(group);
             }
         }
 
@@ -98,6 +104,59 @@ namespace ReadQuestionnaire
                 label.BackColor = BackgroundColor.YELLOW;
                 label.Width = Width / headers.Count;
                 label.Height = Height / 3;
+            }
+        }
+
+        private Control GetControl(Question question, LinkedList<string> headers, RadioGroup group)
+        {
+            Control control = null;
+            if (question.answerType == AnswerType.TEXTBOX)
+            {
+                control = new TextBox();
+                TextBox textBox = control as TextBox;
+                textBox.Multiline = true;
+                textBoxGroup.AddBox(textBox);
+            }
+            else
+            {
+                control = new RadioButton();
+                RadioButton radioButton = control as RadioButton;
+                group.AddButton(radioButton);
+                radioButton.CheckedChanged += OnRadioCheckedChange;
+            }
+
+            control.Anchor = AnchorStyles.None;
+            control.Dock = DockStyle.Fill;
+            control.Width = Width / (headers.Count + 1);
+            control.Height = GetAnswerHeight(question);
+            control.Margin = new Padding(0);
+            control.Padding = new Padding(control.Width / 2, 0, 0, 0);
+
+            return control;
+        }
+
+        private Panel GetContainer(Question question, LinkedList<string> headers)
+        {
+            Panel container = new Panel();
+            container.Width = Width / (headers.Count + 1);
+            container.Height = GetAnswerHeight(question);
+            container.BackColor = BackgroundColor.GREEN;
+            container.Margin = new Padding(0);
+            container.Anchor = AnchorStyles.None;
+            container.Dock = DockStyle.Fill;
+
+            return container;
+        }
+
+        private void OnRadioCheckedChange(object sender, EventArgs e)
+        {
+            RadioButton button = sender as RadioButton;
+            foreach (RadioGroup group in radioGroups)
+            {
+                if (group.Contains(button))
+                {
+                    group.OnCheckedChange(button);
+                }
             }
         }
     }

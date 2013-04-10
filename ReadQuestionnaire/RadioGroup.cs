@@ -15,7 +15,7 @@ namespace ReadQuestionnaire
             buttons = new LinkedList<RadioButton>();
         }
 
-        public void AddRadioButton(RadioButton button)
+        public void AddButton(RadioButton button)
         {
             buttons.AddLast(button);
         }
@@ -51,6 +51,11 @@ namespace ReadQuestionnaire
         public void Clear()
         {
             buttons.Clear();
+        }
+
+        public bool Contains(Control control)
+        {
+            return buttons.Contains(control);
         }
 
     }
