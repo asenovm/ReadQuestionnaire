@@ -22,7 +22,7 @@ namespace ReadQuestionnaire
             for (int i = 0; i < answers.Count; ++i)
             {
                 AttachAnswerLabel(question, i);
-                AttachAnswerFields(question);
+                //                AttachAnswerFields(question);
             }
 
             if (answers.Count == 0)
@@ -40,6 +40,7 @@ namespace ReadQuestionnaire
             Label label = new Label();
             label.Dock = DockStyle.Fill;
             label.Text = answer;
+            label.Height = (2 * Height / 3) / question.GetPossibleAnswers().Count - 10;
             Controls.Add(label, 0, row + (headers.Count > 0 ? 1 : 0));
         }
 
@@ -53,17 +54,20 @@ namespace ReadQuestionnaire
                 if (question.answerType == AnswerType.TEXTBOX)
                 {
                     control = new TextBox();
-                    control.Dock = DockStyle.Fill;
                 }
                 else
                 {
                     control = new RadioButton();
                 }
+
                 control.BackColor = Color.FromArgb(255, 50, 205, 50);
                 control.Anchor = AnchorStyles.None;
                 control.Dock = DockStyle.Fill;
                 control.Margin = new Padding(0);
-                control.Padding = new Padding(control.Width / 2 + 20, 0, 0, 0);
+                control.Width = Width / headers.Count;
+                control.Height = 2 * Height / 3;
+                control.Padding = new Padding(control.Width / 2, 0, 0, 0);
+
                 Controls.Add(control, j, 1);
             }
         }
@@ -77,10 +81,10 @@ namespace ReadQuestionnaire
                 label.Text = headers.ElementAt(i);
                 Controls.Add(label, i, 0);
                 label.TextAlign = ContentAlignment.MiddleCenter;
-                label.BackColor = Color.Red;
                 label.Margin = new Padding(0);
                 label.BackColor = Color.FromArgb(255, 226, 233, 116);
                 label.Width = Width / headers.Count;
+                label.Height = Height / 3;
             }
         }
     }
