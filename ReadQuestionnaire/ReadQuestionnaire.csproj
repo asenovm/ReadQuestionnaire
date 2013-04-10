@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AnswerRecorder.cs" />
     <Compile Include="AnswerType.cs" />
+    <Compile Include="BackgroundColor.cs" />
     <Compile Include="ControlsFactory.cs" />
     <Compile Include="EmailSender.cs" />
     <Compile Include="NotificationPrompt.cs" />

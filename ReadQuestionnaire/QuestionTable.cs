@@ -9,10 +9,12 @@ namespace ReadQuestionnaire
 {
     public class QuestionTable : TableLayoutPanel
     {
+        private const int PADDING_FORM = 5;
+
         public QuestionTable(Control parent, Question question)
         {
-            Width = parent.Width - 5;
-            Height = parent.Height - 5;
+            Width = parent.Width - PADDING_FORM;
+            Height = parent.Height - PADDING_FORM;
             CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
             AttachHeaders(question);
@@ -22,12 +24,12 @@ namespace ReadQuestionnaire
             for (int i = 0; i < answers.Count; ++i)
             {
                 AttachAnswerLabel(question, i);
-                //                AttachAnswerFields(question);
+                AttachAnswerFields(question, i);
             }
 
             if (answers.Count == 0)
             {
-                AttachAnswerFields(question);
+                AttachAnswerFields(question, 0);
             }
 
         }
@@ -40,11 +42,13 @@ namespace ReadQuestionnaire
             Label label = new Label();
             label.Dock = DockStyle.Fill;
             label.Text = answer;
-            label.Height = (2 * Height / 3) / question.GetPossibleAnswers().Count - 10;
+            label.Margin = new Padding(0);
+            label.BackColor = BackgroundColor.YELLOW;
+            label.Height = (2 * Height / 3) / question.GetPossibleAnswers().Count - PADDING_FORM;
             Controls.Add(label, 0, row + (headers.Count > 0 ? 1 : 0));
         }
 
-        private void AttachAnswerFields(Question question)
+        private void AttachAnswerFields(Question question, int row)
         {
             LinkedList<string> headers = question.GetHeaders();
 
@@ -54,21 +58,22 @@ namespace ReadQuestionnaire
                 if (question.answerType == AnswerType.TEXTBOX)
                 {
                     control = new TextBox();
+                    (control as TextBox).Multiline = true;
                 }
                 else
                 {
                     control = new RadioButton();
+                    control.Padding = new Padding(control.Width / 2, 0, 0, 0);
+                    control.BackColor = BackgroundColor.GREEN;
                 }
 
-                control.BackColor = Color.FromArgb(255, 50, 205, 50);
                 control.Anchor = AnchorStyles.None;
                 control.Dock = DockStyle.Fill;
                 control.Margin = new Padding(0);
-                control.Width = Width / headers.Count;
-                control.Height = 2 * Height / 3;
-                control.Padding = new Padding(control.Width / 2, 0, 0, 0);
+                control.Width = Width / (headers.Count + 1);
+                control.Height = (2 * Height / 3) / Math.Max(1, question.GetPossibleAnswers().Count);
 
-                Controls.Add(control, j, 1);
+                Controls.Add(control, j + (question.GetPossibleAnswers().Count > 0 ? 1 : 0), row + 1);
             }
         }
 
@@ -82,7 +87,7 @@ namespace ReadQuestionnaire
                 Controls.Add(label, i, 0);
                 label.TextAlign = ContentAlignment.MiddleCenter;
                 label.Margin = new Padding(0);
-                label.BackColor = Color.FromArgb(255, 226, 233, 116);
+                label.BackColor = BackgroundColor.YELLOW;
                 label.Width = Width / headers.Count;
                 label.Height = Height / 3;
             }
