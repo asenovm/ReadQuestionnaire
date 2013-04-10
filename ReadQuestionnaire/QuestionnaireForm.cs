@@ -116,6 +116,9 @@ namespace ReadQuestionnaire
                 label.Text = headers.ElementAt(i);
                 table.Controls.Add(label, i, 0);
                 label.TextAlign = ContentAlignment.MiddleCenter;
+                label.BackColor = Color.Red;
+                label.Margin = new Padding(0);
+                label.BackColor = Color.FromArgb(255, 226, 233, 116);
                 label.Width = table.Width / headers.Count;
             }
 
@@ -160,7 +163,11 @@ namespace ReadQuestionnaire
                     {
                         control = new RadioButton();
                     }
-
+                    control.BackColor = Color.FromArgb(255, 50, 205, 50);
+                    control.Anchor = AnchorStyles.None;
+                    control.Dock = DockStyle.Fill;
+                    control.Margin = new Padding(0);
+                    control.Padding = new Padding(control.Width/2 + 20, 0, 0, 0);
                     table.Controls.Add(control, j, 1);
                 }
             }
