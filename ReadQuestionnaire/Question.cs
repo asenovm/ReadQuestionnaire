@@ -17,11 +17,7 @@ namespace ReadQuestionnaire
 
         public QuestionType type;
 
-        public Question(string title, QuestionType type)
-        {
-            this.title = title;
-            this.type = type;
-        }
+        public AnswerType answerType;
 
         public LinkedList<string> GetPossibleAnswers()
         {

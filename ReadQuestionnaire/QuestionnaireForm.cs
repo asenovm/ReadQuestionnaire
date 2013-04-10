@@ -73,6 +73,7 @@ namespace ReadQuestionnaire
         {
             Question nextQuestion = questionnaire.GetNextQuestion();
             ResetLayout();
+            questionTitle.Text = nextQuestion.title;
             switch (nextQuestion.type)
             {
                 case QuestionType.OPEN:
@@ -93,7 +94,6 @@ namespace ReadQuestionnaire
             characterCount.Visible = true;
             answerBox.Visible = true;
 
-            questionTitle.Text = question.title;
             answerBox.Text = DEFAULT_TEXT_ANSWER_BOX;
             answerBox.Focus();
             answerBox.SelectAll();
@@ -101,6 +101,7 @@ namespace ReadQuestionnaire
 
         private void ShowTableQuestion(Question question)
         {
+
             questionHolder.Visible = true;
 
             TableLayoutPanel table = new TableLayoutPanel();
@@ -114,21 +115,54 @@ namespace ReadQuestionnaire
                 Label label = new Label();
                 label.Text = headers.ElementAt(i);
                 table.Controls.Add(label, i, 0);
-                label.Dock = DockStyle.Fill;
                 label.TextAlign = ContentAlignment.MiddleCenter;
+                label.Width = table.Width / headers.Count;
             }
 
-            for (int i = 0; i < question.GetPossibleAnswers().Count; ++i)
+            LinkedList<string> answers = question.GetPossibleAnswers();
+
+            for (int i = 0; i < answers.Count; ++i)
             {
-                string answer = question.GetPossibleAnswers().ElementAt(i);
+                string answer = answers.ElementAt(i);
                 Label label = new Label();
+                label.Dock = DockStyle.Fill;
                 label.Text = answer;
-                label.AutoSize = true;
                 table.Controls.Add(label, 0, i + (headers.Count > 0 ? 1 : 0));
 
-                TextBox textBox = new TextBox();
-                textBox.Dock = DockStyle.Fill;
-                table.Controls.Add(textBox, 1, i + (headers.Count > 0 ? 1 : 0));
+                for (int j = 0; j < headers.Count - 1; ++j)
+                {
+                    Control control = null;
+                    if (question.answerType == AnswerType.TEXTBOX)
+                    {
+                        control = new TextBox();
+                        control.Dock = DockStyle.Fill;
+                    }
+                    else
+                    {
+                        control = new RadioButton();
+                    }
+
+                    table.Controls.Add(control, j, i + (headers.Count > 0 ? 1 : 0));
+                }
+            }
+
+            if (answers.Count == 0)
+            {
+                for (int j = 0; j < headers.Count; ++j)
+                {
+                    Control control = null;
+                    if (question.answerType == AnswerType.TEXTBOX)
+                    {
+                        control = new TextBox();
+                        control.Dock = DockStyle.Fill;
+                    }
+                    else
+                    {
+                        control = new RadioButton();
+                    }
+
+                    table.Controls.Add(control, j, 1);
+                }
             }
 
             questionHolder.Controls.Add(table);
@@ -137,7 +171,6 @@ namespace ReadQuestionnaire
         private void ShowMultipleChoiceQuestion(Question question)
         {
             questionHolder.Visible = true;
-            questionTitle.Text = question.title;
 
             foreach (string answer in question.GetPossibleAnswers())
             {

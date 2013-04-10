@@ -53,14 +53,14 @@
             this.answerBox.Multiline = true;
             this.answerBox.Name = "answerBox";
             this.answerBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.answerBox.Size = new System.Drawing.Size(757, 317);
+            this.answerBox.Size = new System.Drawing.Size(757, 372);
             this.answerBox.TabIndex = 1;
             this.answerBox.TextChanged += new System.EventHandler(this.OnAnswerChanged);
             // 
             // nextQuestionButton
             // 
             this.nextQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nextQuestionButton.Location = new System.Drawing.Point(321, 458);
+            this.nextQuestionButton.Location = new System.Drawing.Point(321, 504);
             this.nextQuestionButton.Name = "nextQuestionButton";
             this.nextQuestionButton.Size = new System.Drawing.Size(202, 39);
             this.nextQuestionButton.TabIndex = 2;
@@ -90,16 +90,16 @@
             // 
             // questionHolder
             // 
-            this.questionHolder.Location = new System.Drawing.Point(38, 115);
+            this.questionHolder.Location = new System.Drawing.Point(38, 116);
             this.questionHolder.Name = "questionHolder";
-            this.questionHolder.Size = new System.Drawing.Size(757, 317);
+            this.questionHolder.Size = new System.Drawing.Size(757, 369);
             this.questionHolder.TabIndex = 5;
             // 
             // MainContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(831, 512);
+            this.ClientSize = new System.Drawing.Size(831, 562);
             this.Controls.Add(this.questionHolder);
             this.Controls.Add(this.characterCountLabel);
             this.Controls.Add(this.characterCount);
@@ -107,9 +107,7 @@
             this.Controls.Add(this.answerBox);
             this.Controls.Add(this.questionTitle);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(847, 550);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(847, 550);
             this.Name = "MainContainer";
             this.Text = "Read Questionnaire";
             this.ResumeLayout(false);
