@@ -29,6 +29,7 @@ namespace ReadQuestionnaire
 
             radioButton = new RadioButton();
             radioButton.Margin = new Padding(Width / 2, (Height - radioButton.Height) / 2, 0, 0);
+            radioButton.Tag = answer;
             Controls.Add(radioButton);
 
             Label label = new Label();

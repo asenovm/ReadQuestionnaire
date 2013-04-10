@@ -52,6 +52,22 @@ namespace ReadQuestionnaire
             return areRadioGroupsFilled && textBoxGroup.IsFilled();
         }
 
+        public string GetValue()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (RadioGroup group in radioGroups)
+            {
+                builder.Append(group.GetCheckedValue());
+            }
+
+            for (int i = 0; i < textBoxGroup.Count; ++i)
+            {
+                builder.Append(textBoxGroup.ElementAt(i).Text);
+            }
+
+            return builder.ToString();
+        }
+
         private int GetAnswerHeight(Question question)
         {
             return (2 * Height / 3) / Math.Max(1, question.GetPossibleAnswers().Count) - PADDING_FORM;
@@ -84,7 +100,7 @@ namespace ReadQuestionnaire
             {
 
                 Panel container = GetContainer(question, headers);
-                Control control = GetControl(question, headers, group);
+                Control control = GetControl(question, headers, group,j);
 
                 container.Controls.Add(control);
 
@@ -114,7 +130,7 @@ namespace ReadQuestionnaire
             }
         }
 
-        private Control GetControl(Question question, LinkedList<string> headers, RadioGroup group)
+        private Control GetControl(Question question, LinkedList<string> headers, RadioGroup group, int headerItem)
         {
             Control control = null;
             if (question.answerType == AnswerType.TEXTBOX)
@@ -127,6 +143,8 @@ namespace ReadQuestionnaire
             else
             {
                 control = new RadioButton();
+                control.Tag = headers.ElementAt(headerItem);
+
                 RadioButton radioButton = control as RadioButton;
                 group.AddButton(radioButton);
                 radioButton.CheckedChanged += OnRadioCheckedChange;

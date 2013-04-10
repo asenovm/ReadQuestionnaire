@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace ReadQuestionnaire
 {
     public class TextBoxGroup
     {
         private LinkedList<TextBox> textBoxes;
+
+        public int Count { get { return textBoxes.Count; } }
 
         public TextBoxGroup()
         {
@@ -30,6 +33,11 @@ namespace ReadQuestionnaire
                 }
             }
             return true;
+        }
+
+        public TextBox ElementAt(int position)
+        {
+            return textBoxes.ElementAt(position);
         }
     }
 }

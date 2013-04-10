@@ -51,12 +51,12 @@ namespace ReadQuestionnaire
             if (!questionnaire.HasNextQuestion())
             {
                 prompt.ShowLastQuestionPrompt();
-                recorder.WriteAnswer(questionTitle.Text, answerBox.Text);
+                recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox);
                 this.sender.EmailAnswers();
                 return;
             }
 
-            recorder.WriteAnswer(questionTitle.Text, answerBox.Text);
+            recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox);
 
             ShowNextQuestion();
         }

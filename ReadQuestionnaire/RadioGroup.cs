@@ -20,6 +20,18 @@ namespace ReadQuestionnaire
             buttons.AddLast(button);
         }
 
+        public string GetCheckedValue()
+        {
+            foreach (RadioButton button in buttons)
+            {
+                if (button.Checked)
+                {
+                    return button.Tag as string;
+                }
+            }
+            return "";
+        }
+
         public bool HasChecked()
         {
             foreach (RadioButton button in buttons)
