@@ -14,8 +14,6 @@ namespace ReadQuestionnaire
     {
         private const string DEFAULT_TEXT_ANSWER_BOX = "Моля отговорете на въпроса с не по-малко от 300 символа";
 
-        private const int LENGTH_ANSWER_MIN = 300;
-
         private RadioGroup group;
 
         private Questionnaire questionnaire;
@@ -26,6 +24,8 @@ namespace ReadQuestionnaire
 
         private EmailSender sender;
 
+        private InputValidator validator;
+
         public MainContainer()
         {
             InitializeComponent();
@@ -35,6 +35,7 @@ namespace ReadQuestionnaire
             recorder = new AnswerRecorder();
             sender = new EmailSender();
             group = new RadioGroup();
+            validator = new InputValidator(answerBox, group, questionHolder);
 
             ShowNextQuestion();
         }
@@ -42,37 +43,10 @@ namespace ReadQuestionnaire
         private void OnNextQuestionRequired(object sender, EventArgs e)
         {
             Question currentQuestion = questionnaire.GetCurrentQuestion();
-            switch (currentQuestion.type)
-            {
-                case QuestionType.OPEN:
-                    if (!IsOpenQuestionAnswered())
-                    {
-                        prompt.ShowSmallInputPrompt();
-                        return;
-                    }
-                    break;
-                case QuestionType.MULTIPLE_CHOICE:
-                    if (!IsMultipleChoiceQuestionAnswered())
-                    {
-                        prompt.ShowNotCheckedRadioPrompt();
-                        return;
-                    }
-                    break;
-                case QuestionType.TABLE:
-                    if (!IsTableQuestionAnswered())
-                    {
-                        if (currentQuestion.answerType == AnswerType.RADIO)
-                        {
-                            prompt.ShowNotCheckedRadioPrompt();
-                        }
-                        else {
-                            prompt.ShowNoInputPrompt();
-                        }
-                        return;
-                    }
-                    break;
-            }
 
+            if (!validator.ValidateAnswers(currentQuestion)) {
+                return;
+            }
 
             if (!questionnaire.HasNextQuestion())
             {
@@ -153,27 +127,12 @@ namespace ReadQuestionnaire
             group.OnCheckedChange(sender as RadioButton);
         }
 
-        private bool IsOpenQuestionAnswered()
-        {
-            return answerBox.Text.Length >= LENGTH_ANSWER_MIN;
-        }
+
 
         private void OnAnswerChanged(object sender, EventArgs e)
         {
             characterCount.Text = answerBox.Text.Length.ToString();
         }
 
-        private bool IsMultipleChoiceQuestionAnswered()
-        {
-            return group.HasChecked();
-        }
-
-        private bool IsTableQuestionAnswered()
-        {
-            IEnumerator controls = questionHolder.Controls.GetEnumerator();
-            controls.MoveNext();
-            QuestionTable table = (QuestionTable)controls.Current;
-            return table.IsFilled();
-        }
     }
 }

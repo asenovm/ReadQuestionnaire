@@ -41,13 +41,15 @@ namespace ReadQuestionnaire
 
         }
 
-        public bool IsFilled() {
+        public bool IsFilled()
+        {
             bool areRadioGroupsFilled = true;
-            foreach (RadioGroup group in radioGroups) {
+            foreach (RadioGroup group in radioGroups)
+            {
                 areRadioGroupsFilled = areRadioGroupsFilled && group.HasChecked();
             }
 
-            return areRadioGroupsFilled || textBoxGroup.IsFilled();
+            return areRadioGroupsFilled && textBoxGroup.IsFilled();
         }
 
         private int GetAnswerHeight(Question question)
@@ -73,6 +75,7 @@ namespace ReadQuestionnaire
         {
             LinkedList<string> headers = question.GetHeaders();
             LinkedList<string> answers = question.GetPossibleAnswers();
+
             RadioGroup group = new RadioGroup();
 
             int limit = headers.First.Value.Length == 0 || answers.Count == 0 ? headers.Count : headers.Count - 1;
@@ -87,7 +90,11 @@ namespace ReadQuestionnaire
 
                 Controls.Add(container, j + (Math.Min(answers.Count, 1)), row + 1);
 
-                radioGroups.AddLast(group);
+                if (question.answerType == AnswerType.RADIO)
+                {
+                    radioGroups.AddLast(group);
+                }
+
             }
         }
 

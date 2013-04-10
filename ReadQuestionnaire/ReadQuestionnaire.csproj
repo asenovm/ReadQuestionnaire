@@ -55,6 +55,7 @@
     <Compile Include="BackgroundColor.cs" />
     <Compile Include="ControlsFactory.cs" />
     <Compile Include="EmailSender.cs" />
+    <Compile Include="InputValidator.cs" />
     <Compile Include="NotificationPrompt.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Questionnaire.cs" />
