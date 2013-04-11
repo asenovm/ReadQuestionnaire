@@ -11,7 +11,7 @@ namespace ReadQuestionnaire
 
         public string title;
 
-        public string possibleAnswers;
+        public String possibleAnswers;
 
         public string header;
 
@@ -44,6 +44,7 @@ namespace ReadQuestionnaire
                     result.AddLast(headerItem);
                 }
             }
+
             return result;
         }
 

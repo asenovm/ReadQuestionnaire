@@ -25,7 +25,6 @@ namespace ReadQuestionnaire
             {
                 Question question = JsonConvert.DeserializeObject<Question>(currentLine);
                 questions.AddLast(question);
-                Console.WriteLine(question.type + " " + question.title + " " + question.possibleAnswers);
             }
             reader.Close();
         }

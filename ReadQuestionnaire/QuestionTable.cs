@@ -85,6 +85,7 @@ namespace ReadQuestionnaire
             string answer = question.GetPossibleAnswers().ElementAt(row);
 
             Label label = new Label();
+            label.Font = new Font(FontFamily.GenericSansSerif, 7);
             label.Dock = DockStyle.Fill;
             label.Text = answer;
             label.Margin = new Padding(0);
