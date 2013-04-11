@@ -58,11 +58,13 @@ namespace ReadQuestionnaire
             foreach (RadioGroup group in radioGroups)
             {
                 builder.Append(group.GetCheckedValue());
+                builder.Append(" ");
             }
 
             for (int i = 0; i < textBoxGroup.Count; ++i)
             {
                 builder.Append(textBoxGroup.ElementAt(i).Text);
+                builder.Append(" ");
             }
 
             return builder.ToString();
@@ -94,23 +96,24 @@ namespace ReadQuestionnaire
 
             RadioGroup group = new RadioGroup();
 
-            int limit = headers.First.Value.Length == 0 || answers.Count == 0 ? headers.Count : headers.Count - 1;
+            int limit = answers.Count == 0 ? headers.Count : headers.Count - 1;
+            int increment = answers.Count == 0 ? 0 : 1;
 
             for (int j = 0; j < limit; ++j)
             {
 
                 Panel container = GetContainer(question, headers);
-                Control control = GetControl(question, headers, group,j);
+                Control control = GetControl(question, headers, group,j + increment);
 
                 container.Controls.Add(control);
 
-                Controls.Add(container, j + (Math.Min(answers.Count, 1)), row + 1);
+                Controls.Add(container, j + increment, row + 1);
 
-                if (question.answerType == AnswerType.RADIO)
-                {
-                    radioGroups.AddLast(group);
-                }
+            }
 
+            if (question.answerType == AnswerType.RADIO)
+            {
+                radioGroups.AddLast(group);
             }
         }
 
