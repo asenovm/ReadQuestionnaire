@@ -11,6 +11,10 @@ namespace ReadQuestionnaire
     {
         private const int PADDING_FORM = 2;
 
+        private const float HEADER_PART = 0.15F;
+
+        private const float CONTENT_PART = 0.85F;
+
         private LinkedList<RadioGroup> radioGroups;
 
         private TextBoxGroup textBoxGroup;
@@ -72,7 +76,7 @@ namespace ReadQuestionnaire
 
         private int GetAnswerHeight(Question question)
         {
-            return (2 * Height / 3) / Math.Max(1, question.GetPossibleAnswers().Count) - PADDING_FORM;
+            return (int)((CONTENT_PART * Height) / Math.Max(1, question.GetPossibleAnswers().Count) - PADDING_FORM);
         }
 
         private void AttachAnswerLabel(Question question, int row)
@@ -103,7 +107,7 @@ namespace ReadQuestionnaire
             {
 
                 Panel container = GetContainer(question, headers);
-                Control control = GetControl(question, headers, group,j + increment);
+                Control control = GetControl(question, headers, group, j + increment);
 
                 container.Controls.Add(control);
 
@@ -129,7 +133,7 @@ namespace ReadQuestionnaire
                 label.Margin = new Padding(0);
                 label.BackColor = BackgroundColor.YELLOW;
                 label.Width = Width / headers.Count;
-                label.Height = Height / 3;
+                label.Height = (int)(HEADER_PART * Height);
             }
         }
 

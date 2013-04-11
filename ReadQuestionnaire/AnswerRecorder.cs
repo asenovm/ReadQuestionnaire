@@ -12,6 +12,11 @@ namespace ReadQuestionnaire
     {
         public static string FILE_ANSWERS = "answers.dat";
 
+        public AnswerRecorder() {
+            StreamWriter writer = File.CreateText(FILE_ANSWERS);
+            writer.Close();
+        }
+
         public void WriteAnswer(Question question, RadioGroup group, Control container, TextBox answerBox)
         {
             switch (question.type)

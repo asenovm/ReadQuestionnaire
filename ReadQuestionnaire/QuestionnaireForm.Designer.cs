@@ -38,10 +38,10 @@
             // 
             // questionTitle
             // 
-            this.questionTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.questionTitle.Location = new System.Drawing.Point(38, 9);
+            this.questionTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.questionTitle.Location = new System.Drawing.Point(38, 8);
             this.questionTitle.Name = "questionTitle";
-            this.questionTitle.Size = new System.Drawing.Size(757, 72);
+            this.questionTitle.Size = new System.Drawing.Size(757, 110);
             this.questionTitle.TabIndex = 0;
             this.questionTitle.Text = "Question";
             this.questionTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -49,7 +49,7 @@
             // answerBox
             // 
             this.answerBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.answerBox.Location = new System.Drawing.Point(38, 119);
+            this.answerBox.Location = new System.Drawing.Point(38, 140);
             this.answerBox.Multiline = true;
             this.answerBox.Name = "answerBox";
             this.answerBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -60,7 +60,7 @@
             // nextQuestionButton
             // 
             this.nextQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nextQuestionButton.Location = new System.Drawing.Point(321, 587);
+            this.nextQuestionButton.Location = new System.Drawing.Point(321, 599);
             this.nextQuestionButton.Name = "nextQuestionButton";
             this.nextQuestionButton.Size = new System.Drawing.Size(202, 39);
             this.nextQuestionButton.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             this.characterCount.AutoSize = true;
             this.characterCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.characterCount.Location = new System.Drawing.Point(548, 81);
+            this.characterCount.Location = new System.Drawing.Point(548, 108);
             this.characterCount.Name = "characterCount";
             this.characterCount.Size = new System.Drawing.Size(19, 20);
             this.characterCount.TabIndex = 3;
@@ -82,7 +82,7 @@
             // 
             this.characterCountLabel.AutoSize = true;
             this.characterCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.characterCountLabel.Location = new System.Drawing.Point(268, 81);
+            this.characterCountLabel.Location = new System.Drawing.Point(268, 108);
             this.characterCountLabel.Name = "characterCountLabel";
             this.characterCountLabel.Size = new System.Drawing.Size(259, 20);
             this.characterCountLabel.TabIndex = 4;
@@ -90,7 +90,7 @@
             // 
             // questionHolder
             // 
-            this.questionHolder.Location = new System.Drawing.Point(38, 119);
+            this.questionHolder.Location = new System.Drawing.Point(38, 140);
             this.questionHolder.Name = "questionHolder";
             this.questionHolder.Size = new System.Drawing.Size(757, 444);
             this.questionHolder.TabIndex = 5;
@@ -107,7 +107,9 @@
             this.Controls.Add(this.answerBox);
             this.Controls.Add(this.questionTitle);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(847, 689);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(847, 689);
             this.Name = "MainContainer";
             this.Text = "Read Questionnaire";
             this.ResumeLayout(false);
