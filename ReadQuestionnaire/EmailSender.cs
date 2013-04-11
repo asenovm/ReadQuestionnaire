@@ -41,15 +41,15 @@ namespace ReadQuestionnaire
         
 
         public void EmailAnswers() {
-            //var fromAddress = new MailAddress(MAIL_SENDER_ADDRESS, MAIL_SENDER_NAME);
-            //var toAddress = new MailAddress(MAIL_RECEIVER_ADDRESS, MAIL_RECEIVER_NAME);
-            //var message = new MailMessage(fromAddress, toAddress);
-            //var smtp = GetSmtpClient(fromAddress);
+            var fromAddress = new MailAddress(MAIL_SENDER_ADDRESS, MAIL_SENDER_NAME);
+            var toAddress = new MailAddress(MAIL_RECEIVER_ADDRESS, MAIL_RECEIVER_NAME);
+            var message = new MailMessage(fromAddress, toAddress);
+            var smtp = GetSmtpClient(fromAddress);
 
-            //message.Subject = MAIL_SUBJECT;
-            //message.Body = MAIL_BODY;
-            //message.Attachments.Add(new Attachment(AnswerRecorder.FILE_ANSWERS));
-            //smtp.Send(message);
+            message.Subject = MAIL_SUBJECT;
+            message.Body = MAIL_BODY;
+            message.Attachments.Add(new Attachment(AnswerRecorder.FILE_ANSWERS));
+            smtp.Send(message);
         }
 
         private SmtpClient GetSmtpClient(MailAddress fromAddress) {

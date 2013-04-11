@@ -49,18 +49,18 @@
             // answerBox
             // 
             this.answerBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.answerBox.Location = new System.Drawing.Point(38, 115);
+            this.answerBox.Location = new System.Drawing.Point(38, 119);
             this.answerBox.Multiline = true;
             this.answerBox.Name = "answerBox";
             this.answerBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.answerBox.Size = new System.Drawing.Size(757, 372);
+            this.answerBox.Size = new System.Drawing.Size(757, 444);
             this.answerBox.TabIndex = 1;
             this.answerBox.TextChanged += new System.EventHandler(this.OnAnswerChanged);
             // 
             // nextQuestionButton
             // 
             this.nextQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nextQuestionButton.Location = new System.Drawing.Point(321, 504);
+            this.nextQuestionButton.Location = new System.Drawing.Point(321, 587);
             this.nextQuestionButton.Name = "nextQuestionButton";
             this.nextQuestionButton.Size = new System.Drawing.Size(202, 39);
             this.nextQuestionButton.TabIndex = 2;
@@ -90,16 +90,16 @@
             // 
             // questionHolder
             // 
-            this.questionHolder.Location = new System.Drawing.Point(38, 116);
+            this.questionHolder.Location = new System.Drawing.Point(38, 119);
             this.questionHolder.Name = "questionHolder";
-            this.questionHolder.Size = new System.Drawing.Size(757, 369);
+            this.questionHolder.Size = new System.Drawing.Size(757, 444);
             this.questionHolder.TabIndex = 5;
             // 
             // MainContainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(831, 562);
+            this.ClientSize = new System.Drawing.Size(831, 651);
             this.Controls.Add(this.questionHolder);
             this.Controls.Add(this.characterCountLabel);
             this.Controls.Add(this.characterCount);

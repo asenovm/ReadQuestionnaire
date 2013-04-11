@@ -9,7 +9,7 @@ namespace ReadQuestionnaire
 {
     public class QuestionTable : TableLayoutPanel
     {
-        private const int PADDING_FORM = 5;
+        private const int PADDING_FORM = 2;
 
         private LinkedList<RadioGroup> radioGroups;
 
