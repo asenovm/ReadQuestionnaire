@@ -10,15 +10,17 @@ namespace ReadQuestionnaire
     public class QuestionTable : TableLayoutPanel
     {
 
-        private const int WIDTH_COLUMN = 80;
+        private const int WIDTH_COLUMN = 95;
 
-        private const int HEIGHT_COLUMN = 60;
+        private const int HEIGHT_COLUMN = 40;
 
-        private const int WIDTH_COLUMN_ANSWER_LABEL = 150;
+        private const int HEIGHT_COLUMN_HEADER = 60;
+
+        private const int WIDTH_COLUMN_ANSWER_LABEL = 300;
 
         private const int WIDTH_BORDER = 2;
 
-        private const int FONT_SIZE_ANSWER_LABEL = 7;
+        private const int FONT_SIZE_ANSWER_LABEL = 8;
 
         private LinkedList<RadioGroup> radioGroups;
 
@@ -87,7 +89,7 @@ namespace ReadQuestionnaire
 
         private int GetControlHeight(int answersCount, int headersCount)
         {
-            return (Math.Max(answersCount, 1) + Math.Min(headersCount, 1)) * HEIGHT_COLUMN;
+            return Math.Max(answersCount, 1) * HEIGHT_COLUMN + Math.Min(headersCount, 1) * HEIGHT_COLUMN_HEADER;
         }
 
         private int GetControlWidth(int headersCount, int emptyHeadersCount)
@@ -154,7 +156,7 @@ namespace ReadQuestionnaire
                 label.BackColor = BackgroundColor.YELLOW;
                 int borderWidth = i == headers.Count - 1 ? headers.Count + WIDTH_BORDER : 0;
                 label.Width = WIDTH_COLUMN - borderWidth;
-                label.Height = HEIGHT_COLUMN - WIDTH_BORDER;
+                label.Height = HEIGHT_COLUMN_HEADER - WIDTH_BORDER;
                 if (label.Text.Length == 0 || (i == 0 && question.GetPossibleAnswers().Count > 0))
                 {
                     label.Width = WIDTH_COLUMN_ANSWER_LABEL - borderWidth;

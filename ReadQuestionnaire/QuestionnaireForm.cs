@@ -66,9 +66,9 @@ namespace ReadQuestionnaire
             questionHolder.Controls.Clear();
             questionHolder.Visible = false;
             questionHolder.Width = 845;
-            questionHolder.Height = 521;
+            questionHolder.Height = 300;
             questionHolder.Left = 53;
-            questionHolder.Top = 123;
+            questionHolder.Top = 105;
 
 
             answerBox.Visible = false;
@@ -135,7 +135,6 @@ namespace ReadQuestionnaire
         private void CenterInContainer(Control container, Control control)
         {
             control.Left = container.Width / 2 - control.Width / 2;
-            control.Top = container.Height / 2 - control.Height / 2;
         }
 
 
