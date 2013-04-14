@@ -70,7 +70,7 @@ namespace ReadQuestionnaire
             questionHolder.Left = 53;
             questionHolder.Top = 105;
 
-
+            answerBox.Text = "";
             answerBox.Visible = false;
             group.Clear();
         }

@@ -32,9 +32,9 @@ namespace ReadQuestionnaire
             textBoxGroup = new TextBoxGroup();
 
             LinkedList<string> answers = question.GetPossibleAnswers();
-            LinkedList<string> headers = question.GetHeaders();
+            LinkedList<Option> headers = question.GetOptions();
 
-            Width = GetControlWidth(headers.Count, GetEmptyHeadersCount(headers, answers));
+            Width = GetControlWidth(headers.Count, GetEmptyHeadersCount(answers));
             Height = GetControlHeight(answers.Count, headers.Count);
             CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
@@ -82,9 +82,9 @@ namespace ReadQuestionnaire
             return builder.ToString();
         }
 
-        private int GetEmptyHeadersCount(LinkedList<string> headers, LinkedList<string> answers)
+        private int GetEmptyHeadersCount(LinkedList<string> answers)
         {
-            return headers.Contains("") || answers.Count > 0 ? 1 : 0;
+            return answers.Count > 0 ? 1 : 0;
         }
 
         private int GetControlHeight(int answersCount, int headersCount)
@@ -114,7 +114,7 @@ namespace ReadQuestionnaire
 
         private void AttachAnswerFields(Question question, int row)
         {
-            LinkedList<string> headers = question.GetHeaders();
+            LinkedList<Option> headers = question.GetOptions();
             LinkedList<string> answers = question.GetPossibleAnswers();
 
             RadioGroup group = new RadioGroup();
@@ -124,8 +124,8 @@ namespace ReadQuestionnaire
 
             for (int j = 0; j < limit; ++j)
             {
-                Panel container = GetContainer(question, headers);
-                Control control = GetControl(question, headers, group, j + increment);
+                Panel container = GetContainer();
+                Control control = GetControl(question, headers.ElementAt(j+increment), group);
 
                 if (j == limit - 1)
                 {
@@ -145,11 +145,11 @@ namespace ReadQuestionnaire
 
         private void AttachHeaders(Question question)
         {
-            LinkedList<string> headers = question.GetHeaders();
+            LinkedList<Option> headers = question.GetOptions();
             for (int i = 0; i < headers.Count; ++i)
             {
                 Label label = new Label();
-                label.Text = headers.ElementAt(i);
+                label.Text = headers.ElementAt(i).header;
                 Controls.Add(label, i, 0);
                 label.TextAlign = ContentAlignment.MiddleCenter;
                 label.Margin = new Padding(0);
@@ -164,24 +164,16 @@ namespace ReadQuestionnaire
             }
         }
 
-        private Control GetControl(Question question, LinkedList<string> headers, RadioGroup group, int headerItem)
+        private Control GetControl(Question question, Option header, RadioGroup group)
         {
             Control control = null;
             if (question.answerType == AnswerType.TEXTBOX)
             {
-                control = new TextBox();
-                TextBox textBox = control as TextBox;
-                textBox.Multiline = true;
-                textBoxGroup.AddBox(textBox);
+                control = GetTextBoxControl();
             }
             else
             {
-                control = new RadioButton();
-                control.Tag = headers.ElementAt(headerItem);
-
-                RadioButton radioButton = control as RadioButton;
-                group.AddButton(radioButton);
-                radioButton.CheckedChanged += OnRadioCheckedChange;
+                control = GetRadioControl(group, header);
             }
 
             control.Dock = DockStyle.Fill;
@@ -190,7 +182,24 @@ namespace ReadQuestionnaire
             return control;
         }
 
-        private Panel GetContainer(Question question, LinkedList<string> headers)
+        private Control GetTextBoxControl() {
+            TextBox textBox = new TextBox();
+            textBox.Multiline = true;
+            textBoxGroup.AddBox(textBox);
+            return textBox;
+        }
+
+        private Control GetRadioControl(RadioGroup group, Option header) {
+            RadioButton radioButton= new RadioButton();
+            radioButton.Tag = header.value;
+
+            group.AddButton(radioButton);
+            radioButton.CheckedChanged += OnRadioCheckedChange;
+
+            return radioButton;
+        }
+
+        private Panel GetContainer()
         {
             Panel container = new Panel();
             container.Width = WIDTH_COLUMN;

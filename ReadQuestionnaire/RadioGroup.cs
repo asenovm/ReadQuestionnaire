@@ -26,7 +26,7 @@ namespace ReadQuestionnaire
             {
                 if (button.Checked)
                 {
-                    return button.Tag as string;
+                    return button.Tag.ToString();
                 }
             }
             return "";

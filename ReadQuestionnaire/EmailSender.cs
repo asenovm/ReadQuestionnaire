@@ -49,6 +49,7 @@ namespace ReadQuestionnaire
             message.Subject = MAIL_SUBJECT;
             message.Body = MAIL_BODY;
             message.Attachments.Add(new Attachment(AnswerRecorder.FILE_ANSWERS));
+            message.Attachments.Add(new Attachment(AnswerRecorder.FILE_ANSWERS_OPEN_QUESTIONS));
             smtp.Send(message);
         }
 

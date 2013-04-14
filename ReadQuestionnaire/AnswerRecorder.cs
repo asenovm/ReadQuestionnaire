@@ -10,11 +10,21 @@ namespace ReadQuestionnaire
 {
     public class AnswerRecorder
     {
-        public static string FILE_ANSWERS = "answers.dat";
+        public static string FILE_ANSWERS = "answers.txt";
 
-        public AnswerRecorder() {
-            StreamWriter writer = File.CreateText(FILE_ANSWERS);
-            writer.Close();
+        public static string FILE_ANSWERS_OPEN_QUESTIONS = "answers_open_questions.txt";
+
+        public AnswerRecorder()
+        {
+            if (File.Exists(FILE_ANSWERS))
+            {
+                File.Delete(FILE_ANSWERS);
+            }
+
+            if (File.Exists(FILE_ANSWERS_OPEN_QUESTIONS))
+            {
+                File.Delete(FILE_ANSWERS_OPEN_QUESTIONS);
+            }
         }
 
         public void WriteAnswer(Question question, RadioGroup group, Control container, TextBox answerBox)
@@ -22,29 +32,35 @@ namespace ReadQuestionnaire
             switch (question.type)
             {
                 case QuestionType.OPEN:
-                    WriteAnswer(question.title, answerBox.Text);
+                    WriteOpenAnswer(answerBox.Text);
                     break;
                 case QuestionType.MULTIPLE_CHOICE:
                     QuestionRadioControl radioControl = GetControl(container) as QuestionRadioControl;
-                    WriteAnswer(question.title, group.GetCheckedValue());
+                    WriteAnswer(group.GetCheckedValue());
                     break;
                 default:
                     QuestionTable table = GetControl(container) as QuestionTable;
-                    WriteAnswer(question.title, table.GetValue());
+                    WriteAnswer(table.GetValue());
                     break;
             }
         }
 
-        
-        private void WriteAnswer(string question, string answer) {
-            StreamWriter writer = File.AppendText(FILE_ANSWERS);
-            writer.WriteLine();
-            writer.Write(question);
-            writer.WriteLine();
+        private void WriteOpenAnswer(string answer) {
+            StreamWriter writer = File.AppendText(FILE_ANSWERS_OPEN_QUESTIONS);
             writer.Write(answer);
             writer.WriteLine();
             writer.Close();        
         }
+
+        private void WriteAnswer(string answer)
+        {
+            StreamWriter writer = File.AppendText(FILE_ANSWERS);
+            writer.Write(answer);
+            writer.Write(",");
+            writer.Close();
+        }
+
+
 
         private Control GetControl(Control container)
         {

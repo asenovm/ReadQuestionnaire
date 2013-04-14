@@ -15,6 +15,8 @@ namespace ReadQuestionnaire
 
         public string header;
 
+        public string value;
+
         public QuestionType type;
 
         public AnswerType answerType;
@@ -33,15 +35,17 @@ namespace ReadQuestionnaire
             return result;
         }
 
-        public LinkedList<string> GetHeaders()
+        public LinkedList<Option> GetOptions()
         {
-            LinkedList<string> result = new LinkedList<string>();
+            LinkedList<Option> result = new LinkedList<Option>();
             if (header != null)
             {
                 string[] headers = header.Split(ITEM_SEPARATOR);
-                foreach (string headerItem in headers)
+                string[] values = value == null ? null : value.Split(ITEM_SEPARATOR);
+                for (int i = 0; i < headers.Length; ++i)
                 {
-                    result.AddLast(headerItem);
+                    Option option = new Option(headers[i], values == null ? 0 : int.Parse(values[i]));
+                    result.AddLast(option);
                 }
             }
 
