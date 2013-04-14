@@ -22,7 +22,12 @@ namespace Read
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
             Hide();
-            new MainContainer(outputFileId, "questions_traits.dat").Show();
+            new MainContainer(outputFileId, FileName.QUESTIONS_PERSONAL).Show();
+        }
+
+        private void OnCloseRequired(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }

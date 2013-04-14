@@ -22,7 +22,12 @@ namespace Read
         private void OnBeginButtonClicked(object sender, EventArgs e)
         {
             Hide();
-            new MainContainer(outputFileId, "questions.dat").Show();
+            new MainContainer(outputFileId, FileName.QUESTIONS_ECONOMIC).Show();
+        }
+
+        private void OnCloseRequired(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
         }
 
     }

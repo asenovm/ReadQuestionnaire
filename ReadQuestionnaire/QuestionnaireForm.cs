@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using System.Diagnostics;
 
 namespace Read
 {
@@ -27,19 +28,21 @@ namespace Read
 
         private string outputFileId;
 
+        private bool allowClose;
+
         public MainContainer(string outputFileId, string questionsFilePath)
         {
             InitializeComponent();
 
             this.outputFileId = outputFileId;
 
-            string filePathOpenAnswer = "results_questionnaire_open_" + outputFileId;
-            string filePathMultipleChoiceAnswer = "results_questionnaire_multiple_choice_" + outputFileId;
+            string filePathOpenAnswer = FileName.RESULTS_OPEN_ANSWER + outputFileId;
+            string filePathMultipleChoiceAnswer = FileName.RESULTS_MULTIPLE_CHOICE + outputFileId;
 
             prompt = new NotificationPrompt();
             questionnaire = new Questionnaire(questionsFilePath);
             recorder = new AnswerRecorder(filePathOpenAnswer, filePathMultipleChoiceAnswer);
-            sender = new EmailSender(filePathOpenAnswer, filePathMultipleChoiceAnswer);
+            sender = new EmailSender(filePathOpenAnswer, filePathMultipleChoiceAnswer, FileName.RESULTS_EXPERIMENT + outputFileId);
             group = new RadioGroup();
             validator = new InputValidator(answerBox, group, questionHolder);
 
@@ -59,10 +62,13 @@ namespace Read
             {
                 prompt.ShowLastQuestionPrompt();
                 recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox);
-                this.sender.EmailAnswers();
                 if (questionnaire.IsLastQuestionnaire())
                 {
+                    this.sender.EmailAnswers();
+                    allowClose = true;
+                    Close();
                     Application.Exit();
+                    Process.GetCurrentProcess().Kill();
                 }
                 else {
                     Hide();
@@ -157,6 +163,11 @@ namespace Read
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
             group.OnCheckedChange(sender as RadioButton);
+        }
+
+        private void OnCloseRequired(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = !allowClose;
         }
 
     }

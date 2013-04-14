@@ -61,6 +61,7 @@
       <DependentUpon>EconomicInstructionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="EmailSender.cs" />
+    <Compile Include="FileName.cs" />
     <Compile Include="InputValidator.cs" />
     <Compile Include="NotificationPrompt.cs" />
     <Compile Include="Program.cs" />

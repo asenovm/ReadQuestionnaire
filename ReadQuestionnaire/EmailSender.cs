@@ -33,9 +33,12 @@ namespace Read
 
         private string filePathMultipleChoiceQuestions;
 
-        public EmailSender(string filePathOpenQuestions, string filePathMultipleChoiceQuestions) {
+        private string filePathExperimentResults;
+
+        public EmailSender(string filePathOpenQuestions, string filePathMultipleChoiceQuestions, string filePathExperimentResults) {
             this.filePathOpenQuestions = filePathOpenQuestions;
             this.filePathMultipleChoiceQuestions = filePathMultipleChoiceQuestions;
+            this.filePathExperimentResults = filePathExperimentResults;
             ReadEmailSenderPassword();
         }
 
@@ -56,6 +59,7 @@ namespace Read
             message.Body = MAIL_BODY;
             message.Attachments.Add(new Attachment(filePathOpenQuestions));
             message.Attachments.Add(new Attachment(filePathMultipleChoiceQuestions));
+            message.Attachments.Add(new Attachment(filePathExperimentResults));
             //smtp.Send(message);
         }
 

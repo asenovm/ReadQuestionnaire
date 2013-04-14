@@ -80,6 +80,7 @@
             this.MinimumSize = new System.Drawing.Size(940, 600);
             this.Name = "EconomicInstructionForm";
             this.Text = "EconomicInstructionForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnCloseRequired);
             this.ResumeLayout(false);
             this.PerformLayout();
 
