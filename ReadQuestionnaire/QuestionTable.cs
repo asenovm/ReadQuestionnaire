@@ -18,6 +18,8 @@ namespace ReadQuestionnaire
 
         private const int WIDTH_BORDER = 2;
 
+        private const int FONT_SIZE_ANSWER_LABEL = 7;
+
         private LinkedList<RadioGroup> radioGroups;
 
         private TextBoxGroup textBoxGroup;
@@ -30,17 +32,15 @@ namespace ReadQuestionnaire
             LinkedList<string> answers = question.GetPossibleAnswers();
             LinkedList<string> headers = question.GetHeaders();
 
-            int emptyHeaders = headers.Contains("") || answers.Count > 0 ? 1 : 0;
-
-            Width = (headers.Count - emptyHeaders) * WIDTH_COLUMN + emptyHeaders * WIDTH_COLUMN_ANSWER_LABEL;
-            Height = (Math.Max(answers.Count, 1) + Math.Min(headers.Count, 1)) * HEIGHT_COLUMN;
+            Width = GetControlWidth(headers.Count, GetEmptyHeadersCount(headers, answers));
+            Height = GetControlHeight(answers.Count, headers.Count);
             CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
             AttachHeaders(question);
 
             for (int i = 0; i < answers.Count; ++i)
             {
-                AttachAnswerLabel(question, i);
+                AttachAnswerLabel(answers.ElementAt(i), headers.Count, i);
                 AttachAnswerFields(question, i);
             }
 
@@ -80,21 +80,34 @@ namespace ReadQuestionnaire
             return builder.ToString();
         }
 
-
-        private void AttachAnswerLabel(Question question, int row)
+        private int GetEmptyHeadersCount(LinkedList<string> headers, LinkedList<string> answers)
         {
-            LinkedList<string> headers = question.GetHeaders();
-            string answer = question.GetPossibleAnswers().ElementAt(row);
+            return headers.Contains("") || answers.Count > 0 ? 1 : 0;
+        }
 
+        private int GetControlHeight(int answersCount, int headersCount)
+        {
+            return (Math.Max(answersCount, 1) + Math.Min(headersCount, 1)) * HEIGHT_COLUMN;
+        }
+
+        private int GetControlWidth(int headersCount, int emptyHeadersCount)
+        {
+            return (headersCount - emptyHeadersCount) * WIDTH_COLUMN + emptyHeadersCount * WIDTH_COLUMN_ANSWER_LABEL;
+        }
+
+
+        private void AttachAnswerLabel(string answer, int headerCount, int row)
+        {
             Label label = new Label();
-            label.Font = new Font(FontFamily.GenericSansSerif, 7);
+            label.Font = new Font(FontFamily.GenericSansSerif, FONT_SIZE_ANSWER_LABEL);
             label.Dock = DockStyle.Fill;
             label.Text = answer;
             label.Margin = new Padding(0);
             label.BackColor = BackgroundColor.YELLOW;
             label.Height = HEIGHT_COLUMN;
             label.Width = WIDTH_COLUMN_ANSWER_LABEL;
-            Controls.Add(label, 0, row + Math.Min(headers.Count, 1));
+
+            Controls.Add(label, 0, row + Math.Min(headerCount, 1));
         }
 
         private void AttachAnswerFields(Question question, int row)

@@ -118,8 +118,8 @@ namespace ReadQuestionnaire
             questionHolder.Visible = true;
             LinkedList<string> answers = question.GetPossibleAnswers();
 
-            questionHolder.Width = answers.Count * 120;
-            questionHolder.Height = 140;
+            questionHolder.Width = answers.Count * QuestionRadioControl.WIDTH_CONTROL;
+            questionHolder.Height = QuestionRadioControl.HEIGHT_CONTROL;
 
             foreach (string answer in answers)
             {
@@ -127,15 +127,6 @@ namespace ReadQuestionnaire
                 control.RadioButton.CheckedChanged += OnRadioButtonChecked;
                 group.AddButton(control.RadioButton);
                 questionHolder.Controls.Add(control);
-            }
-
-            int controlsWidth = 0;
-            int controlsHeight = 0;
-
-            foreach (Control control in questionHolder.Controls)
-            {
-                controlsWidth += control.Width;
-                controlsHeight = control.Height;
             }
 
             CenterInContainer(this, questionHolder);
