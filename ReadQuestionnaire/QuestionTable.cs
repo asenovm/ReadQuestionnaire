@@ -9,11 +9,14 @@ namespace ReadQuestionnaire
 {
     public class QuestionTable : TableLayoutPanel
     {
-        private const int PADDING_FORM = 2;
 
-        private const float HEADER_PART = 0.15F;
+        private const int WIDTH_COLUMN = 80;
 
-        private const float CONTENT_PART = 0.85F;
+        private const int HEIGHT_COLUMN = 60;
+
+        private const int WIDTH_COLUMN_ANSWER_LABEL = 150;
+
+        private const int WIDTH_BORDER = 2;
 
         private LinkedList<RadioGroup> radioGroups;
 
@@ -24,13 +27,16 @@ namespace ReadQuestionnaire
             radioGroups = new LinkedList<RadioGroup>();
             textBoxGroup = new TextBoxGroup();
 
-            Width = parent.Width - PADDING_FORM;
-            Height = parent.Height - PADDING_FORM;
+            LinkedList<string> answers = question.GetPossibleAnswers();
+            LinkedList<string> headers = question.GetHeaders();
+
+            int emptyHeaders = headers.Contains("") || answers.Count > 0 ? 1 : 0;
+
+            Width = (headers.Count - emptyHeaders) * WIDTH_COLUMN + emptyHeaders * WIDTH_COLUMN_ANSWER_LABEL;
+            Height = (Math.Max(answers.Count, 1) + Math.Min(headers.Count, 1)) * HEIGHT_COLUMN;
             CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
             AttachHeaders(question);
-
-            LinkedList<string> answers = question.GetPossibleAnswers();
 
             for (int i = 0; i < answers.Count; ++i)
             {
@@ -74,10 +80,6 @@ namespace ReadQuestionnaire
             return builder.ToString();
         }
 
-        private int GetAnswerHeight(Question question)
-        {
-            return (int)((CONTENT_PART * Height) / Math.Max(1, question.GetPossibleAnswers().Count) - PADDING_FORM);
-        }
 
         private void AttachAnswerLabel(Question question, int row)
         {
@@ -90,7 +92,8 @@ namespace ReadQuestionnaire
             label.Text = answer;
             label.Margin = new Padding(0);
             label.BackColor = BackgroundColor.YELLOW;
-            label.Height = GetAnswerHeight(question);
+            label.Height = HEIGHT_COLUMN;
+            label.Width = WIDTH_COLUMN_ANSWER_LABEL;
             Controls.Add(label, 0, row + Math.Min(headers.Count, 1));
         }
 
@@ -106,14 +109,17 @@ namespace ReadQuestionnaire
 
             for (int j = 0; j < limit; ++j)
             {
-
                 Panel container = GetContainer(question, headers);
                 Control control = GetControl(question, headers, group, j + increment);
+
+                if (j == limit - 1)
+                {
+                    container.Width = container.Width - limit - WIDTH_BORDER;
+                }
 
                 container.Controls.Add(control);
 
                 Controls.Add(container, j + increment, row + 1);
-
             }
 
             if (question.answerType == AnswerType.RADIO)
@@ -133,8 +139,13 @@ namespace ReadQuestionnaire
                 label.TextAlign = ContentAlignment.MiddleCenter;
                 label.Margin = new Padding(0);
                 label.BackColor = BackgroundColor.YELLOW;
-                label.Width = Width / headers.Count;
-                label.Height = (int)(HEADER_PART * Height);
+                int borderWidth = i == headers.Count - 1 ? headers.Count + WIDTH_BORDER : 0;
+                label.Width = WIDTH_COLUMN - borderWidth;
+                label.Height = HEIGHT_COLUMN - WIDTH_BORDER;
+                if (label.Text.Length == 0 || (i == 0 && question.GetPossibleAnswers().Count > 0))
+                {
+                    label.Width = WIDTH_COLUMN_ANSWER_LABEL - borderWidth;
+                }
             }
         }
 
@@ -158,12 +169,8 @@ namespace ReadQuestionnaire
                 radioButton.CheckedChanged += OnRadioCheckedChange;
             }
 
-            control.Anchor = AnchorStyles.None;
             control.Dock = DockStyle.Fill;
-            control.Width = Width / (headers.Count + 1);
-            control.Height = GetAnswerHeight(question);
-            control.Margin = new Padding(0);
-            control.Padding = new Padding(control.Width / 2, 0, 0, 0);
+            control.Padding = new Padding(WIDTH_COLUMN / 2 - 5, 0, 0, 0);
 
             return control;
         }
@@ -171,8 +178,8 @@ namespace ReadQuestionnaire
         private Panel GetContainer(Question question, LinkedList<string> headers)
         {
             Panel container = new Panel();
-            container.Width = Width / (headers.Count + 1);
-            container.Height = GetAnswerHeight(question);
+            container.Width = WIDTH_COLUMN;
+            container.Height = HEIGHT_COLUMN - WIDTH_BORDER;
             container.BackColor = BackgroundColor.GREEN;
             container.Margin = new Padding(0);
             container.Anchor = AnchorStyles.None;

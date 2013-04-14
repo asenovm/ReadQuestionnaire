@@ -13,6 +13,8 @@ namespace ReadQuestionnaire
 
         public static Color YELLOW = Color.FromArgb(255, 226, 233, 116);
 
+        public static Color TEAL = Color.FromArgb(255, 234, 239, 233);
+
         private BackgroundColor()
         {
             //blank

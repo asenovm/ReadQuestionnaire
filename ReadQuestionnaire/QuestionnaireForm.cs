@@ -43,7 +43,8 @@ namespace ReadQuestionnaire
         {
             Question currentQuestion = questionnaire.GetCurrentQuestion();
 
-            if (!validator.ValidateAnswers(currentQuestion)) {
+            if (!validator.ValidateAnswers(currentQuestion))
+            {
                 return;
             }
 
@@ -64,6 +65,11 @@ namespace ReadQuestionnaire
         {
             questionHolder.Controls.Clear();
             questionHolder.Visible = false;
+            questionHolder.Width = 845;
+            questionHolder.Height = 521;
+            questionHolder.Left = 53;
+            questionHolder.Top = 123;
+
 
             answerBox.Visible = false;
             group.Clear();
@@ -99,20 +105,46 @@ namespace ReadQuestionnaire
         private void ShowTableQuestion(Question question)
         {
             questionHolder.Visible = true;
-            questionHolder.Controls.Add(ControlsFactory.from(question, questionHolder, ""));
+            Control control = ControlsFactory.from(question, questionHolder, "");
+            questionHolder.Controls.Add(control);
+            questionHolder.Width = control.Width + 14;
+            questionHolder.Height = control.Height + 14;
+            CenterInContainer(this, questionHolder);
+            control.Margin = new Padding(questionHolder.Width / 2 - control.Width / 2, questionHolder.Height / 2 - control.Height / 2, 0, 0);
         }
 
         private void ShowMultipleChoiceQuestion(Question question)
         {
             questionHolder.Visible = true;
+            LinkedList<string> answers = question.GetPossibleAnswers();
 
-            foreach (string answer in question.GetPossibleAnswers())
+            questionHolder.Width = answers.Count * 120;
+            questionHolder.Height = 140;
+
+            foreach (string answer in answers)
             {
                 QuestionRadioControl control = ControlsFactory.from(question, questionHolder, answer) as QuestionRadioControl;
                 control.RadioButton.CheckedChanged += OnRadioButtonChecked;
                 group.AddButton(control.RadioButton);
                 questionHolder.Controls.Add(control);
             }
+
+            int controlsWidth = 0;
+            int controlsHeight = 0;
+
+            foreach (Control control in questionHolder.Controls)
+            {
+                controlsWidth += control.Width;
+                controlsHeight = control.Height;
+            }
+
+            CenterInContainer(this, questionHolder);
+        }
+
+        private void CenterInContainer(Control container, Control control)
+        {
+            control.Left = container.Width / 2 - control.Width / 2;
+            control.Top = container.Height / 2 - control.Height / 2;
         }
 
 

@@ -36,8 +36,9 @@
             // 
             // questionTitle
             // 
-            this.questionTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.questionTitle.Location = new System.Drawing.Point(38, 8);
+            this.questionTitle.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.questionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(81)))), ((int)(((byte)(119)))));
+            this.questionTitle.Location = new System.Drawing.Point(53, 20);
             this.questionTitle.Name = "questionTitle";
             this.questionTitle.Size = new System.Drawing.Size(825, 100);
             this.questionTitle.TabIndex = 0;
@@ -46,8 +47,9 @@
             // 
             // answerBox
             // 
+            this.answerBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(239)))), ((int)(((byte)(233)))));
             this.answerBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.answerBox.Location = new System.Drawing.Point(38, 140);
+            this.answerBox.Location = new System.Drawing.Point(53, 140);
             this.answerBox.Multiline = true;
             this.answerBox.Name = "answerBox";
             this.answerBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -57,7 +59,7 @@
             // nextQuestionButton
             // 
             this.nextQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nextQuestionButton.Location = new System.Drawing.Point(366, 670);
+            this.nextQuestionButton.Location = new System.Drawing.Point(369, 670);
             this.nextQuestionButton.Name = "nextQuestionButton";
             this.nextQuestionButton.Size = new System.Drawing.Size(202, 39);
             this.nextQuestionButton.TabIndex = 2;
@@ -67,7 +69,8 @@
             // 
             // questionHolder
             // 
-            this.questionHolder.Location = new System.Drawing.Point(38, 123);
+            this.questionHolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(239)))), ((int)(((byte)(233)))));
+            this.questionHolder.Location = new System.Drawing.Point(53, 141);
             this.questionHolder.Name = "questionHolder";
             this.questionHolder.Size = new System.Drawing.Size(845, 521);
             this.questionHolder.TabIndex = 5;
@@ -76,6 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
             this.ClientSize = new System.Drawing.Size(924, 732);
             this.Controls.Add(this.questionHolder);
             this.Controls.Add(this.nextQuestionButton);
