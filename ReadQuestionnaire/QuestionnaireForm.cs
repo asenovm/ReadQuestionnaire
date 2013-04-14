@@ -25,15 +25,19 @@ namespace Read
 
         private InputValidator validator;
 
-        public MainContainer(string outputFileId)
+        private string outputFileId;
+
+        public MainContainer(string outputFileId, string questionsFilePath)
         {
             InitializeComponent();
+
+            this.outputFileId = outputFileId;
 
             string filePathOpenAnswer = "results_questionnaire_open_" + outputFileId;
             string filePathMultipleChoiceAnswer = "results_questionnaire_multiple_choice_" + outputFileId;
 
             prompt = new NotificationPrompt();
-            questionnaire = new Questionnaire();
+            questionnaire = new Questionnaire(questionsFilePath);
             recorder = new AnswerRecorder(filePathOpenAnswer, filePathMultipleChoiceAnswer);
             sender = new EmailSender(filePathOpenAnswer, filePathMultipleChoiceAnswer);
             group = new RadioGroup();
@@ -56,6 +60,15 @@ namespace Read
                 prompt.ShowLastQuestionPrompt();
                 recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox);
                 this.sender.EmailAnswers();
+                if (questionnaire.IsLastQuestionnaire())
+                {
+                    Application.Exit();
+                }
+                else {
+                    Hide();
+                    new TraitsInstructionForm(outputFileId).Show();
+                }
+                
                 return;
             }
 

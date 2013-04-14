@@ -11,7 +11,7 @@ namespace Read
 
         private const string PROMPT_NAME = "READ Questionnaire";
 
-        private const string MESSAGE_LAST_QUESTION = "Това беше последният въпрос. Благодарим ви за участието!";
+        private const string MESSAGE_LAST_QUESTION = "Благодарим Ви, че отговорихте на въпросите. Моля не натискайте ОК преди да се консултирате с ръководителя на експеримента.";
 
         private const string MESSAGE_NOT_CHECKED_RADIO = "Трябва да маркирате поне една опция.";
 
@@ -30,10 +30,6 @@ namespace Read
         public void ShowLastQuestionPrompt()
         {
             DialogResult result = ShowMessage(MESSAGE_LAST_QUESTION);
-            if (result == DialogResult.OK)
-            {
-                Application.Exit();
-            }
         }
 
         private DialogResult ShowMessage(String message)

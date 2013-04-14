@@ -54,6 +54,12 @@
     <Compile Include="AnswerType.cs" />
     <Compile Include="BackgroundColor.cs" />
     <Compile Include="ControlsFactory.cs" />
+    <Compile Include="EconomicInstructionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EconomicInstructionForm.Designer.cs">
+      <DependentUpon>EconomicInstructionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EmailSender.cs" />
     <Compile Include="InputValidator.cs" />
     <Compile Include="NotificationPrompt.cs" />
@@ -78,6 +84,15 @@
     <Compile Include="RadioGroup.cs" />
     <Compile Include="Option.cs" />
     <Compile Include="TextBoxGroup.cs" />
+    <Compile Include="TraitsInstructionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TraitsInstructionForm.Designer.cs">
+      <DependentUpon>TraitsInstructionForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EconomicInstructionForm.resx">
+      <DependentUpon>EconomicInstructionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QuestionnaireForm.resx">
       <DependentUpon>QuestionnaireForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,6 +106,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TraitsInstructionForm.resx">
+      <DependentUpon>TraitsInstructionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

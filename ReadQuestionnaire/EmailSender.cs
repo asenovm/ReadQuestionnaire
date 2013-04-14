@@ -56,7 +56,7 @@ namespace Read
             message.Body = MAIL_BODY;
             message.Attachments.Add(new Attachment(filePathOpenQuestions));
             message.Attachments.Add(new Attachment(filePathMultipleChoiceQuestions));
-            smtp.Send(message);
+            //smtp.Send(message);
         }
 
         private SmtpClient GetSmtpClient(MailAddress fromAddress) {

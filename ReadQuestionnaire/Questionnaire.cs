@@ -8,13 +8,14 @@ namespace Read
     public class Questionnaire
     {
 
-        private const string QUESTIONS_FILE = "questions.dat";
-
         private QuestionReader reader;
 
-        public Questionnaire()
+        private string questionsFilePath;
+
+        public Questionnaire(string questionsFilePath)
         {
-            reader = new QuestionReader(QUESTIONS_FILE);
+            reader = new QuestionReader(questionsFilePath);
+            this.questionsFilePath = questionsFilePath;
         }
 
         public Question GetCurrentQuestion()
@@ -30,6 +31,11 @@ namespace Read
         public bool HasNextQuestion()
         {
             return reader.HasNextQuestion();
+        }
+
+        public bool IsLastQuestionnaire()
+        {
+            return questionsFilePath.Contains("traits");
         }
     }
 }
