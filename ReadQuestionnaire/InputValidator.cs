@@ -10,8 +10,6 @@ namespace ReadQuestionnaire
     public class InputValidator
     {
 
-        private const int LENGTH_ANSWER_MIN = 300;
-
         private NotificationPrompt prompt;
 
         private TextBox answerBox;
@@ -31,13 +29,6 @@ namespace ReadQuestionnaire
         public bool ValidateAnswers(Question question) {
             switch (question.type)
             {
-                case QuestionType.OPEN:
-                    if (!IsOpenQuestionAnswered())
-                    {
-                        prompt.ShowSmallInputPrompt();
-                        return false;
-                    }
-                    break;
                 case QuestionType.MULTIPLE_CHOICE:
                     if (!IsMultipleChoiceQuestionAnswered())
                     {
@@ -61,11 +52,6 @@ namespace ReadQuestionnaire
                     break;
             }
             return true;
-        }
-
-        private bool IsOpenQuestionAnswered()
-        {
-            return answerBox.Text.Length >= LENGTH_ANSWER_MIN;
         }
 
         private bool IsMultipleChoiceQuestionAnswered()

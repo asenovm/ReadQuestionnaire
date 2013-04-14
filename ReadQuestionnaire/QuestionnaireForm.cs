@@ -12,7 +12,6 @@ namespace ReadQuestionnaire
 {
     public partial class MainContainer : Form
     {
-        private const string DEFAULT_TEXT_ANSWER_BOX = "Моля отговорете на въпроса с не по-малко от 300 символа";
 
         private RadioGroup group;
 
@@ -67,8 +66,6 @@ namespace ReadQuestionnaire
             questionHolder.Visible = false;
 
             answerBox.Visible = false;
-            characterCount.Visible = false;
-            characterCountLabel.Visible = false;
             group.Clear();
         }
 
@@ -93,11 +90,8 @@ namespace ReadQuestionnaire
 
         private void ShowOpenQuestion(Question question)
         {
-            characterCountLabel.Visible = true;
-            characterCount.Visible = true;
             answerBox.Visible = true;
 
-            answerBox.Text = DEFAULT_TEXT_ANSWER_BOX;
             answerBox.Focus();
             answerBox.SelectAll();
         }
@@ -125,13 +119,6 @@ namespace ReadQuestionnaire
         private void OnRadioButtonChecked(object sender, EventArgs e)
         {
             group.OnCheckedChange(sender as RadioButton);
-        }
-
-
-
-        private void OnAnswerChanged(object sender, EventArgs e)
-        {
-            characterCount.Text = answerBox.Text.Length.ToString();
         }
 
     }
