@@ -6,7 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Collections;
 
-namespace ReadQuestionnaire
+namespace Read
 {
     public class AnswerRecorder
     {

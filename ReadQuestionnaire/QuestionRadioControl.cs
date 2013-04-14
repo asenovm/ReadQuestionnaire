@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace ReadQuestionnaire
+namespace Read
 {
     public class QuestionRadioControl : FlowLayoutPanel
     {

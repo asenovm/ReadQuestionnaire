@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections;
 using System.Windows.Forms;
 
-namespace ReadQuestionnaire
+namespace Read
 {
     public class InputValidator
     {

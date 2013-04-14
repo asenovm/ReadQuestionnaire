@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace ReadQuestionnaire
+namespace Read
 {
     public class QuestionReader
     {

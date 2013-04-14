@@ -1,4 +1,4 @@
-﻿namespace ReadQuestionnaire
+﻿namespace Read
 {
     partial class MainContainer
     {
@@ -37,7 +37,7 @@
             // questionTitle
             // 
             this.questionTitle.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.questionTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(81)))), ((int)(((byte)(119)))));
+            this.questionTitle.ForeColor = System.Drawing.Color.Black;
             this.questionTitle.Location = new System.Drawing.Point(53, 20);
             this.questionTitle.Name = "questionTitle";
             this.questionTitle.Size = new System.Drawing.Size(825, 100);
@@ -58,13 +58,14 @@
             // 
             // nextQuestionButton
             // 
+            this.nextQuestionButton.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.nextQuestionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nextQuestionButton.Location = new System.Drawing.Point(369, 479);
             this.nextQuestionButton.Name = "nextQuestionButton";
             this.nextQuestionButton.Size = new System.Drawing.Size(202, 39);
             this.nextQuestionButton.TabIndex = 2;
             this.nextQuestionButton.Text = "Следващ въпрос";
-            this.nextQuestionButton.UseVisualStyleBackColor = true;
+            this.nextQuestionButton.UseVisualStyleBackColor = false;
             this.nextQuestionButton.Click += new System.EventHandler(this.OnNextQuestionRequired);
             // 
             // questionHolder
@@ -79,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(205)))), ((int)(((byte)(205)))));
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(924, 562);
             this.Controls.Add(this.questionHolder);
             this.Controls.Add(this.nextQuestionButton);

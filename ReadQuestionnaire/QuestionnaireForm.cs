@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Collections;
 
-namespace ReadQuestionnaire
+namespace Read
 {
     public partial class MainContainer : Form
     {

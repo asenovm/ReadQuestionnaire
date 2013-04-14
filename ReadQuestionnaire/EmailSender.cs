@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Net;
 using System.IO;
 
-namespace ReadQuestionnaire
+namespace Read
 {
     public class EmailSender
     {
