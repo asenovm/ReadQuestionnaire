@@ -21,6 +21,8 @@ namespace Read
 
         public AnswerType answerType;
 
+        public bool Last { get; set; }
+
         public LinkedList<string> GetPossibleAnswers()
         {
             LinkedList<string> result = new LinkedList<string>();

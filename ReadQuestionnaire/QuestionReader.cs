@@ -26,6 +26,7 @@ namespace Read
                 Question question = JsonConvert.DeserializeObject<Question>(currentLine);
                 questions.AddLast(question);
             }
+            questions.Last.Value.Last = true;
             reader.Close();
         }
 

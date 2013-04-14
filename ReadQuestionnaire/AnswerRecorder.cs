@@ -10,21 +10,15 @@ namespace Read
 {
     public class AnswerRecorder
     {
-        public static string FILE_ANSWERS = "answers.txt";
 
-        public static string FILE_ANSWERS_OPEN_QUESTIONS = "answers_open_questions.txt";
+        private string filePathOpenQuestions;
 
-        public AnswerRecorder()
+        private string filePathMultipleChoiceQuestions;
+
+        public AnswerRecorder(string filePathOpenQuestions, string filePathMultipleChoiceQuestions)
         {
-            if (File.Exists(FILE_ANSWERS))
-            {
-                File.Delete(FILE_ANSWERS);
-            }
-
-            if (File.Exists(FILE_ANSWERS_OPEN_QUESTIONS))
-            {
-                File.Delete(FILE_ANSWERS_OPEN_QUESTIONS);
-            }
+            this.filePathOpenQuestions = filePathOpenQuestions;
+            this.filePathMultipleChoiceQuestions = filePathMultipleChoiceQuestions;
         }
 
         public void WriteAnswer(Question question, RadioGroup group, Control container, TextBox answerBox)
@@ -36,27 +30,41 @@ namespace Read
                     break;
                 case QuestionType.MULTIPLE_CHOICE:
                     QuestionRadioControl radioControl = GetControl(container) as QuestionRadioControl;
-                    WriteAnswer(group.GetCheckedValue());
+                    WriteAnswer(group.GetCheckedValue(), !question.Last);
                     break;
                 default:
                     QuestionTable table = GetControl(container) as QuestionTable;
-                    WriteAnswer(table.GetValue());
+                    WriteAnswer(table.GetValue(), !question.Last);
                     break;
             }
         }
 
-        private void WriteOpenAnswer(string answer) {
-            StreamWriter writer = File.AppendText(FILE_ANSWERS_OPEN_QUESTIONS);
-            writer.Write(answer);
-            writer.WriteLine();
-            writer.Close();        
+        public string GetOpenAnswer()
+        {
+            return filePathOpenQuestions;
         }
 
-        private void WriteAnswer(string answer)
+        public string GetMultipleChoiceAnswer()
         {
-            StreamWriter writer = File.AppendText(FILE_ANSWERS);
+            return filePathMultipleChoiceQuestions;
+        }
+
+        private void WriteOpenAnswer(string answer)
+        {
+            StreamWriter writer = File.AppendText(filePathOpenQuestions);
             writer.Write(answer);
-            writer.Write(",");
+            writer.WriteLine();
+            writer.Close();
+        }
+
+        private void WriteAnswer(string answer, bool isAddingDelimiter)
+        {
+            StreamWriter writer = File.AppendText(filePathMultipleChoiceQuestions);
+            writer.Write(answer);
+            if (isAddingDelimiter)
+            {
+                writer.Write(",");
+            }
             writer.Close();
         }
 

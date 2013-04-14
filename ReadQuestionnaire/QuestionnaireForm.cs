@@ -25,14 +25,17 @@ namespace Read
 
         private InputValidator validator;
 
-        public MainContainer()
+        public MainContainer(string outputFileId)
         {
             InitializeComponent();
 
+            string filePathOpenAnswer = "results_questionnaire_open_" + outputFileId;
+            string filePathMultipleChoiceAnswer = "results_questionnaire_multiple_choice_" + outputFileId;
+
             prompt = new NotificationPrompt();
             questionnaire = new Questionnaire();
-            recorder = new AnswerRecorder();
-            sender = new EmailSender();
+            recorder = new AnswerRecorder(filePathOpenAnswer, filePathMultipleChoiceAnswer);
+            sender = new EmailSender(filePathOpenAnswer, filePathMultipleChoiceAnswer);
             group = new RadioGroup();
             validator = new InputValidator(answerBox, group, questionHolder);
 
