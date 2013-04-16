@@ -18,8 +18,6 @@ namespace Read
 
         private Questionnaire questionnaire;
 
-        private NotificationPrompt prompt;
-
         private AnswerRecorder recorder;
 
         private EmailSender sender;
@@ -39,7 +37,6 @@ namespace Read
             string filePathOpenAnswer = FileName.RESULTS_OPEN_ANSWER + outputFileId;
             string filePathMultipleChoiceAnswer = FileName.RESULTS_MULTIPLE_CHOICE + outputFileId;
 
-            prompt = new NotificationPrompt();
             questionnaire = new Questionnaire(questionsFilePath);
             recorder = new AnswerRecorder(filePathOpenAnswer, filePathMultipleChoiceAnswer);
             sender = new EmailSender(filePathOpenAnswer, filePathMultipleChoiceAnswer, FileName.RESULTS_EXPERIMENT + outputFileId);
@@ -60,8 +57,7 @@ namespace Read
 
             if (!questionnaire.HasNextQuestion())
             {
-                prompt.ShowLastQuestionPrompt();
-                recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox);
+                recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last  && questionnaire.IsLastQuestionnaire());
                 if (questionnaire.IsLastQuestionnaire())
                 {
                     this.sender.EmailAnswers();
@@ -78,7 +74,7 @@ namespace Read
                 return;
             }
 
-            recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox);
+            recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last && questionnaire.IsLastQuestionnaire());
 
             ShowNextQuestion();
         }

@@ -60,7 +60,7 @@ namespace Read
             message.Attachments.Add(new Attachment(filePathOpenQuestions));
             message.Attachments.Add(new Attachment(filePathMultipleChoiceQuestions));
             message.Attachments.Add(new Attachment(filePathExperimentResults));
-            //smtp.Send(message);
+            smtp.Send(message);
         }
 
         private SmtpClient GetSmtpClient(MailAddress fromAddress) {

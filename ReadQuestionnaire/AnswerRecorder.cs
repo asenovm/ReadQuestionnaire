@@ -21,7 +21,7 @@ namespace Read
             this.filePathMultipleChoiceQuestions = filePathMultipleChoiceQuestions;
         }
 
-        public void WriteAnswer(Question question, RadioGroup group, Control container, TextBox answerBox)
+        public void WriteAnswer(Question question, RadioGroup group, Control container, TextBox answerBox, bool isLastQuestion)
         {
             switch (question.type)
             {
@@ -30,11 +30,11 @@ namespace Read
                     break;
                 case QuestionType.MULTIPLE_CHOICE:
                     QuestionRadioControl radioControl = GetControl(container) as QuestionRadioControl;
-                    WriteAnswer(group.GetCheckedValue(), !question.Last);
+                    WriteAnswer(group.GetCheckedValue(), !isLastQuestion);
                     break;
                 default:
                     QuestionTable table = GetControl(container) as QuestionTable;
-                    WriteAnswer(table.GetValue(), !question.Last);
+                    WriteAnswer(table.GetValue(), !isLastQuestion);
                     break;
             }
         }
@@ -52,6 +52,7 @@ namespace Read
         private void WriteOpenAnswer(string answer)
         {
             StreamWriter writer = File.AppendText(filePathOpenQuestions);
+            writer.WriteLine();
             writer.Write(answer);
             writer.WriteLine();
             writer.Close();

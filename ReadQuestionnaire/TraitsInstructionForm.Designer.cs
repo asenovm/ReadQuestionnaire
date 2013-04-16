@@ -53,7 +53,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.Location = new System.Drawing.Point(50, 119);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(819, 100);
+            this.label2.Size = new System.Drawing.Size(781, 120);
             this.label2.TabIndex = 4;
             this.label2.Text = resources.GetString("label2.Text");
             // 

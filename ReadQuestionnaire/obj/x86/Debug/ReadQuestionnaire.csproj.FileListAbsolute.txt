@@ -1,9 +1,7 @@
-c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\ReadQuestionnaire.exe
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\ReadQuestionnaire.pdb
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ResolveAssemblyReference.cache
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\GenerateResource.read.1.tlog
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\GenerateResource.write.1.tlog
-c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ReadQuestionnaire.exe
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ReadQuestionnaire.pdb
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\Newtonsoft.Json.xml
@@ -11,3 +9,6 @@ C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQues
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.Properties.Resources.resources
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.EconomicInstructionForm.resources
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.TraitsInstructionForm.resources
+C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\ReadQuestionnaire.dll.config
+C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\ReadQuestionnaire.dll
+C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ReadQuestionnaire.dll

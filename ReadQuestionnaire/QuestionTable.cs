@@ -67,16 +67,27 @@ namespace Read
         public string GetValue()
         {
             StringBuilder builder = new StringBuilder();
-            foreach (RadioGroup group in radioGroups)
+
+            if (radioGroups.Count > 0)
             {
-                builder.Append(group.GetCheckedValue());
-                builder.Append(" ");
+                builder.Append(radioGroups.First.Value.GetCheckedValue());
             }
 
-            for (int i = 0; i < textBoxGroup.Count; ++i)
+            for (int i = 1; i < radioGroups.Count; ++i)
             {
-                builder.Append(textBoxGroup.ElementAt(i).Text);
                 builder.Append(" ");
+                builder.Append(radioGroups.ElementAt(i).GetCheckedValue());
+            }
+
+            if (textBoxGroup.Count > 0)
+            {
+                builder.Append(textBoxGroup.ElementAt(0).Text);
+            }
+
+            for (int i = 1; i < textBoxGroup.Count; ++i)
+            {
+                builder.Append(" ");
+                builder.Append(textBoxGroup.ElementAt(i).Text);
             }
 
             return builder.ToString();
@@ -125,7 +136,7 @@ namespace Read
             for (int j = 0; j < limit; ++j)
             {
                 Panel container = GetContainer();
-                Control control = GetControl(question, headers.ElementAt(j+increment), group);
+                Control control = GetControl(question, headers.ElementAt(j + increment), group);
 
                 if (j == limit - 1)
                 {
@@ -182,15 +193,17 @@ namespace Read
             return control;
         }
 
-        private Control GetTextBoxControl() {
+        private Control GetTextBoxControl()
+        {
             TextBox textBox = new TextBox();
             textBox.Multiline = true;
             textBoxGroup.AddBox(textBox);
             return textBox;
         }
 
-        private Control GetRadioControl(RadioGroup group, Option header) {
-            RadioButton radioButton= new RadioButton();
+        private Control GetRadioControl(RadioGroup group, Option header)
+        {
+            RadioButton radioButton = new RadioButton();
             radioButton.Tag = header.value;
 
             group.AddButton(radioButton);
