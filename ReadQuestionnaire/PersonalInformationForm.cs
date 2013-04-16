@@ -14,8 +14,6 @@ namespace Read
     public partial class PersonalInformationForm : Form
     {
 
-        private const string MESSAGE_ERROR = "Моля попълнете всички необходими данни";
-
         private AnswerRecorder answerRecorder;
 
         private EmailSender emailSender;
@@ -29,17 +27,26 @@ namespace Read
 
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
-            if (!IsFormFilled())
+            if (IsFormFilled())
             {
-                MessageBox.Show(MESSAGE_ERROR,
-                "READ Експеримент",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
-                return;
+                WriteAnswers();
+                CloseApplication();
+            }
+            else
+            {
+                new NotificationPrompt().ShowFormNotFilledPrompt();
             }
 
-            answerRecorder.WritePersonalInformation(ageBox.Text,maleRadio.Checked ? "0" : "1", majorDropDown.SelectedIndex.ToString());
+        }
+
+        private void WriteAnswers()
+        {
+            answerRecorder.WritePersonalInformation(ageBox.Text, maleRadio.Checked ? "0" : "1", majorDropDown.SelectedIndex.ToString());
             emailSender.EmailAnswers();
+        }
+
+        private void CloseApplication()
+        {
             Close();
             Application.Exit();
             Process.GetCurrentProcess().Kill();

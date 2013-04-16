@@ -13,6 +13,8 @@ namespace Read
 
         private const string PROMPT_NAME_EXPRIMENT = "Експеримент";
 
+        private const string MESSAGE_FORM_NOT_FILLED = "Моля попълнете всички необходими данни";
+
         private const string MESSAGE_NOT_CHECKED_RADIO = "Трябва да маркирате поне една опция.";
 
         private const string MESSAGE_NO_INPUT = "Трябва да въведете поне 1 символ във всяко поле.";
@@ -23,6 +25,10 @@ namespace Read
         {
 
             ShowMessage(MESSAGE_EXPRIMENT_END, PROMPT_NAME_EXPRIMENT);
+        }
+
+        public void ShowFormNotFilledPrompt() {
+            ShowMessage(MESSAGE_FORM_NOT_FILLED);
         }
 
         public void ShowNoInputPrompt()

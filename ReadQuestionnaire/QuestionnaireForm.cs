@@ -53,24 +53,27 @@ namespace Read
                 return;
             }
 
-            if (!questionnaire.HasNextQuestion())
+            if (questionnaire.HasNextQuestion())
+            {
+                recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last && questionnaire.IsLastQuestionnaire());
+
+                ShowNextQuestion();
+            }
+            else
             {
                 Hide();
-                recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last  && questionnaire.IsLastQuestionnaire());
+                recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last && questionnaire.IsLastQuestionnaire());
                 if (questionnaire.IsLastQuestionnaire())
                 {
                     new PersonalInformationForm(this.recorder, this.sender).Show();
                 }
-                else {
+                else
+                {
                     new TraitsInstructionForm(outputFileId).Show();
                 }
-                
-                return;
             }
 
-            recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last && questionnaire.IsLastQuestionnaire());
 
-            ShowNextQuestion();
         }
 
         private void ResetLayout()
@@ -122,7 +125,7 @@ namespace Read
             questionHolder.Width = control.Width + 14;
             questionHolder.Height = control.Height + 14;
             CenterInContainer(this, questionHolder);
-            control.Margin = new Padding(questionHolder.Width / 2 - control.Width / 2, questionHolder.Height / 2 - control.Height / 2, 0, 0);
+            control.Margin = new Padding((questionHolder.Width - control.Width) / 2, (questionHolder.Height - control.Height) / 2, 0, 0);
         }
 
         private void ShowMultipleChoiceQuestion(Question question)
@@ -146,7 +149,7 @@ namespace Read
 
         private void CenterInContainer(Control container, Control control)
         {
-            control.Left = container.Width / 2 - control.Width / 2;
+            control.Left = (container.Width - control.Width) / 2;
         }
 
 
