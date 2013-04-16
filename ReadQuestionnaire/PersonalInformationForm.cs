@@ -48,8 +48,7 @@ namespace Read
         private void CloseApplication()
         {
             Close();
-            Application.Exit();
-            Process.GetCurrentProcess().Kill();
+            Environment.Exit(0);
         }
 
         private bool IsFormFilled()
