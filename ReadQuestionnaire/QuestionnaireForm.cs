@@ -26,8 +26,6 @@ namespace Read
 
         private string outputFileId;
 
-        private bool allowClose;
-
         public MainContainer(string outputFileId, string questionsFilePath)
         {
             InitializeComponent();
@@ -57,17 +55,13 @@ namespace Read
 
             if (!questionnaire.HasNextQuestion())
             {
+                Hide();
                 recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last  && questionnaire.IsLastQuestionnaire());
                 if (questionnaire.IsLastQuestionnaire())
                 {
-                    this.sender.EmailAnswers();
-                    allowClose = true;
-                    Close();
-                    Application.Exit();
-                    Process.GetCurrentProcess().Kill();
+                    new PersonalInformationForm(this.recorder, this.sender).Show();
                 }
                 else {
-                    Hide();
                     new TraitsInstructionForm(outputFileId).Show();
                 }
                 
@@ -163,7 +157,7 @@ namespace Read
 
         private void OnCloseRequired(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = !allowClose;
+            e.Cancel = true;
         }
 
     }

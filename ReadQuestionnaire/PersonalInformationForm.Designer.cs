@@ -164,7 +164,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 445);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(719, 483);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(719, 483);
             this.Name = "PersonalInformationForm";
             this.Text = "PersonalInformation";

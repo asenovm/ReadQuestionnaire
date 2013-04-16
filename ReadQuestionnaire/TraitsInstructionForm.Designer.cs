@@ -76,7 +76,9 @@
             this.Controls.Add(this.beginButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(940, 600);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(940, 600);
             this.Name = "TraitsInstructionForm";
             this.Text = "TraitsInstructionForm";

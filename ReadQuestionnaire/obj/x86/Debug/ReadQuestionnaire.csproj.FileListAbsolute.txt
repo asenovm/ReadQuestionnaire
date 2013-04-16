@@ -12,3 +12,4 @@ C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQues
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\ReadQuestionnaire.dll.config
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\ReadQuestionnaire.dll
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ReadQuestionnaire.dll
+C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.PersonalInformationForm.resources

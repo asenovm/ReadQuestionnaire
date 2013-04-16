@@ -39,6 +39,13 @@ namespace Read
             }
         }
 
+        public void WritePersonalInformation(string age, string gender, string major)
+        {
+            WriteAnswer(age, true);
+            WriteAnswer(gender, true);
+            WriteAnswer(major, false);
+        }
+
         public string GetOpenAnswer()
         {
             return filePathOpenQuestions;

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace Read
 {
@@ -15,14 +16,20 @@ namespace Read
 
         private const string MESSAGE_ERROR = "Моля попълнете всички необходими данни";
 
-        public PersonalInformationForm()
+        private AnswerRecorder answerRecorder;
+
+        private EmailSender emailSender;
+
+        public PersonalInformationForm(AnswerRecorder recorder, EmailSender sender)
         {
             InitializeComponent();
+            answerRecorder = recorder;
+            emailSender = sender;
         }
 
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
-            if (!CanOpenExperimentForm())
+            if (!IsFormFilled())
             {
                 MessageBox.Show(MESSAGE_ERROR,
                 "READ Експеримент",
@@ -31,16 +38,14 @@ namespace Read
                 return;
             }
 
-            string resultsFile = FileName.RESULTS_EXPERIMENT + Guid.NewGuid() + ".txt";
-            FileUtil.WriteToFile(ageBox.Text, maleRadio.Checked ? "0" : "1", majorDropDown.SelectedIndex.ToString(), resultsFile);
-
-            FormReadExperiment frm = new FormReadExperiment(resultsFile);
-
-            this.Hide();
-            frm.Show();
+            answerRecorder.WritePersonalInformation(ageBox.Text,maleRadio.Checked ? "0" : "1", majorDropDown.SelectedIndex.ToString());
+            emailSender.EmailAnswers();
+            Close();
+            Application.Exit();
+            Process.GetCurrentProcess().Kill();
         }
 
-        private bool CanOpenExperimentForm()
+        private bool IsFormFilled()
         {
             return ageBox.Text.Length > 0 && majorDropDown.SelectedItem != null && (maleRadio.Checked || femaleRadio.Checked);
         }
