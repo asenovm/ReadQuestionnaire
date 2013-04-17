@@ -36,11 +36,12 @@
             // 
             // questionTitle
             // 
-            this.questionTitle.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.questionTitle.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.questionTitle.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.questionTitle.ForeColor = System.Drawing.Color.Black;
-            this.questionTitle.Location = new System.Drawing.Point(53, 20);
+            this.questionTitle.Location = new System.Drawing.Point(58, 20);
             this.questionTitle.Name = "questionTitle";
-            this.questionTitle.Size = new System.Drawing.Size(825, 100);
+            this.questionTitle.Size = new System.Drawing.Size(825, 93);
             this.questionTitle.TabIndex = 0;
             this.questionTitle.Text = "Question";
             this.questionTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -49,7 +50,7 @@
             // 
             this.answerBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(239)))), ((int)(((byte)(233)))));
             this.answerBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.answerBox.Location = new System.Drawing.Point(53, 105);
+            this.answerBox.Location = new System.Drawing.Point(53, 116);
             this.answerBox.Multiline = true;
             this.answerBox.Name = "answerBox";
             this.answerBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -71,7 +72,7 @@
             // questionHolder
             // 
             this.questionHolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(239)))), ((int)(((byte)(233)))));
-            this.questionHolder.Location = new System.Drawing.Point(53, 105);
+            this.questionHolder.Location = new System.Drawing.Point(48, 116);
             this.questionHolder.Name = "questionHolder";
             this.questionHolder.Size = new System.Drawing.Size(845, 300);
             this.questionHolder.TabIndex = 5;

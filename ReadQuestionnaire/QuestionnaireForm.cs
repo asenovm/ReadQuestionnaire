@@ -69,7 +69,7 @@ namespace Read
                 }
                 else
                 {
-                    new TraitsInstructionForm(outputFileId).Show();
+                    new MainContainer(outputFileId, FileName.QUESTIONS_PERSONAL).Show();
                 }
             }
 
@@ -82,8 +82,8 @@ namespace Read
             questionHolder.Visible = false;
             questionHolder.Width = 845;
             questionHolder.Height = 300;
-            questionHolder.Left = 53;
-            questionHolder.Top = 105;
+            questionHolder.Left = 48;
+            questionHolder.Top = 116;
 
             answerBox.Text = "";
             answerBox.Visible = false;
@@ -122,6 +122,7 @@ namespace Read
             questionHolder.Visible = true;
             Control control = ControlsFactory.from(question, questionHolder, "");
             questionHolder.Controls.Add(control);
+            questionHolder.Top = questionHolder.Top + (questionHolder.Height - control.Height) / 2 + 14;
             questionHolder.Width = control.Width + 14;
             questionHolder.Height = control.Height + 14;
             CenterInContainer(this, questionHolder);
