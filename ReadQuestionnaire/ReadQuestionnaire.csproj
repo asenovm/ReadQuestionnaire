@@ -57,6 +57,7 @@
     <Compile Include="AnswerRecorder.cs" />
     <Compile Include="AnswerType.cs" />
     <Compile Include="BackgroundColor.cs" />
+    <Compile Include="ConnectivityChecker.cs" />
     <Compile Include="ControlsFactory.cs" />
     <Compile Include="EconomicInstructionForm.cs">
       <SubType>Form</SubType>

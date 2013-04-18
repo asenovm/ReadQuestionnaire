@@ -15,6 +15,8 @@ namespace Read
 
         private string filePathMultipleChoiceQuestions;
 
+        private const string DELIMITER_ANSWER = ",";
+
         public AnswerRecorder(string filePathOpenQuestions, string filePathMultipleChoiceQuestions)
         {
             this.filePathOpenQuestions = filePathOpenQuestions;
@@ -41,6 +43,7 @@ namespace Read
 
         public void WritePersonalInformation(string age, string gender, string major)
         {
+            WriteDelimiter();
             WriteAnswer(age, true);
             WriteAnswer(gender, true);
             WriteAnswer(major, false);
@@ -71,8 +74,14 @@ namespace Read
             writer.Write(answer);
             if (isAddingDelimiter)
             {
-                writer.Write(",");
+                writer.Write(DELIMITER_ANSWER);
             }
+            writer.Close();
+        }
+
+        private void WriteDelimiter() {
+            StreamWriter writer = File.AppendText(filePathMultipleChoiceQuestions);
+            writer.Write(DELIMITER_ANSWER);
             writer.Close();
         }
 

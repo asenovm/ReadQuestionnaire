@@ -21,6 +21,8 @@ namespace Read
 
         private const string MAIL_SERVER_URL = "smtp.gmail.com";
 
+        private const string SERVER_URL = "http://gmail.com";
+
         private const string MAIL_SENDER_NAME = "Read Expriment";
 
         private const string MAIL_RECEIVER_NAME = "Read Expriment Distribution List";
@@ -35,21 +37,34 @@ namespace Read
 
         private string filePathExperimentResults;
 
-        public EmailSender(string filePathOpenQuestions, string filePathMultipleChoiceQuestions, string filePathExperimentResults) {
+        private ConnectivityChecker connectivityChecker;
+
+        public EmailSender(string filePathOpenQuestions, string filePathMultipleChoiceQuestions, string filePathExperimentResults)
+        {
             this.filePathOpenQuestions = filePathOpenQuestions;
             this.filePathMultipleChoiceQuestions = filePathMultipleChoiceQuestions;
             this.filePathExperimentResults = filePathExperimentResults;
+            this.connectivityChecker = new ConnectivityChecker();
             ReadEmailSenderPassword();
         }
 
-        private void ReadEmailSenderPassword() {
+        private void ReadEmailSenderPassword()
+        {
             StreamReader reader = new StreamReader(FILE_EMAIL_SENDER_PASSWORD);
             senderPassword = reader.ReadToEnd();
-            reader.Close();        
+            reader.Close();
         }
-        
 
-        public void EmailAnswers() {
+
+        public void EmailAnswers()
+        {
+            if (!connectivityChecker.CanConnectTo(SERVER_URL))
+            {
+                Console.WriteLine("cant connect!!!");
+                return;
+            }
+            Console.WriteLine("can connect to mail server --> sending emails!");
+
             var fromAddress = new MailAddress(MAIL_SENDER_ADDRESS, MAIL_SENDER_NAME);
             var toAddress = new MailAddress(MAIL_RECEIVER_ADDRESS, MAIL_RECEIVER_NAME);
             var message = new MailMessage(fromAddress, toAddress);
@@ -60,10 +75,11 @@ namespace Read
             message.Attachments.Add(new Attachment(filePathOpenQuestions));
             message.Attachments.Add(new Attachment(filePathMultipleChoiceQuestions));
             message.Attachments.Add(new Attachment(filePathExperimentResults));
-            //smtp.Send(message);
+            smtp.Send(message);
         }
 
-        private SmtpClient GetSmtpClient(MailAddress fromAddress) {
+        private SmtpClient GetSmtpClient(MailAddress fromAddress)
+        {
             return new SmtpClient
             {
                 Host = MAIL_SERVER_URL,
@@ -72,7 +88,7 @@ namespace Read
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromAddress.Address, senderPassword)
-            };        
+            };
         }
     }
 }
