@@ -117,10 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Това е втората част на експеримента. Отговорите на следващите въпроси няма да повлияят на
-натрупаното от Вас количество омниум бонум и сумата, която ще получите  накрая, но за
-разбирането на резултатите е необходимо да научим повече за начина, по който сте взимали
-решения. Поради това Ви молим да бъдете максимално искрен/а в отговорите си.</value>
-  </data>
 </root>

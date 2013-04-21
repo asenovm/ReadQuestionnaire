@@ -71,7 +71,7 @@ namespace Read
                 }
                 else
                 {
-                    new MainContainer(outputFileId, FileName.QUESTIONS_PERSONAL).Show();
+                    new TraitsInstructionForm(outputFileId).Show();
                 }
             }
 

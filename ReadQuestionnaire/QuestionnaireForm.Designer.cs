@@ -92,6 +92,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(940, 600);
             this.Name = "MainContainer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Въпросник";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnCloseRequired);
             this.ResumeLayout(false);
