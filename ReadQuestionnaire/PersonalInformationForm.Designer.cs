@@ -169,7 +169,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(719, 483);
             this.Name = "PersonalInformationForm";
-            this.Text = "PersonalInformation";
+            this.Text = "Въпросник";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnCloseRequired);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
