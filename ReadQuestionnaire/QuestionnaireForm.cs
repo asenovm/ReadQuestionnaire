@@ -14,6 +14,8 @@ namespace Read
     public partial class MainContainer : Form
     {
 
+        private const int PADDING_QUESTION_TITLE = 20;
+
         private RadioGroup group;
 
         private Questionnaire questionnaire;
@@ -107,6 +109,14 @@ namespace Read
                     ShowTableQuestion(nextQuestion);
                     break;
             }
+
+            questionTitle.Top = questionHolder.Top - GetQuestionHeight() - PADDING_QUESTION_TITLE;
+        }
+
+        private int GetQuestionHeight()
+        {
+            Size textSize = TextRenderer.MeasureText(questionTitle.Text, questionTitle.Font);
+            return (textSize.Width / questionTitle.Width) * textSize.Height + textSize.Height;
         }
 
         private void ShowOpenQuestion(Question question)
