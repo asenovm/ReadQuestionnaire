@@ -19,14 +19,6 @@ namespace Read
 
         private const string MESSAGE_NO_INPUT = "Трябва да въведете поне 1 символ във всяко поле.";
 
-        private const string MESSAGE_EXPRIMENT_END = "\tБлагодарим, че взехте участие в първата част на изследването. Моля, НЕ натискайте бутона ОК преди ръководителят на експеримента да дойде и да отбележи натрупаното от Вас количество омниум бонум. Преди да получите съответстващото му заплащане е необходимо да попълните въпросник относно Вашата стратегия по време на играта и личните Ви предпочитания.";
-
-        public void ShowExperimentEndPrompt()
-        {
-
-            ShowMessage(MESSAGE_EXPRIMENT_END, PROMPT_NAME_EXPRIMENT);
-        }
-
         public void ShowFormNotFilledPrompt() {
             ShowMessage(MESSAGE_FORM_NOT_FILLED);
         }
@@ -47,7 +39,6 @@ namespace Read
 
         private void ShowMessage(string message, string promptName)
         {
-            Console.Beep();
             MessageBox.Show(message, promptName,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
