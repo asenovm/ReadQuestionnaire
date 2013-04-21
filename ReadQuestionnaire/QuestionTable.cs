@@ -16,11 +16,15 @@ namespace Read
 
         private const int HEIGHT_COLUMN_HEADER = 60;
 
+        private const int HEIGHT_COLUMN_OPEN_OPTION = 50;
+
         private const int WIDTH_COLUMN_ANSWER_LABEL = 300;
 
         private const int WIDTH_BORDER = 2;
 
         private const int FONT_SIZE_ANSWER_LABEL = 8;
+
+        private const string TEXT_OPEN_OPTION = "Друго (напишете какво): ";
 
         private LinkedList<RadioGroup> radioGroups;
 
@@ -46,11 +50,50 @@ namespace Read
                 AttachAnswerFields(question, i);
             }
 
+            if (question.hasOpenOption)
+            {
+                Height = Height + HEIGHT_COLUMN_OPEN_OPTION;
+                AttachOpenOptionLabel(question, answers.Count + 1, 0);
+                AttachOpenOptionAnswer(question, answers.Count + 1, 1);
+            }
+
             if (answers.Count == 0)
             {
                 AttachAnswerFields(question, 0);
             }
+        }
 
+        private void AttachOpenOptionLabel(Question question, int row, int column)
+        {
+            Controls.Add(GetOpenOptionControl(), column, row);
+        }
+
+        private void AttachOpenOptionAnswer(Question question, int row, int column)
+        {
+            Controls.Add(GetControl(question, null, null), column, row);
+        }
+
+        private Control GetOpenOptionControl()
+        {
+            FlowLayoutPanel flowLayout = new FlowLayoutPanel();
+            flowLayout.FlowDirection = FlowDirection.TopDown;
+            flowLayout.Dock = DockStyle.Fill;
+
+            Label label = new Label();
+            label.Text = TEXT_OPEN_OPTION;
+            label.Width = WIDTH_COLUMN;
+            label.AutoSize = true;
+            label.Margin = new Padding(0);
+
+            TextBox option = new TextBox();
+
+            flowLayout.Controls.Add(label);
+            flowLayout.Controls.Add(option);
+
+            flowLayout.BackColor = BackgroundColor.YELLOW;
+            flowLayout.Margin = new Padding(0);
+
+            return flowLayout;
         }
 
         public bool IsFilled()
@@ -189,6 +232,7 @@ namespace Read
 
             control.Dock = DockStyle.Fill;
             control.Padding = new Padding(WIDTH_COLUMN / 2 - 5, 0, 0, 0);
+            control.Margin = new Padding(0);
 
             return control;
         }

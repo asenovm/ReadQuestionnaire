@@ -23,6 +23,8 @@ namespace Read
 
         public bool Last { get; set; }
 
+        public bool hasOpenOption;
+
         public LinkedList<string> GetPossibleAnswers()
         {
             LinkedList<string> result = new LinkedList<string>();
