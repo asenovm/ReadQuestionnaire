@@ -10,6 +10,9 @@ namespace Read
 {
     public class TextBoxGroup
     {
+
+        private const string REGEX_TEXT_BOX_ANSWER = "^[1-9]$";
+
         private LinkedList<TextBox> textBoxes;
 
         public int Count { get { return textBoxes.Count; } }
@@ -28,7 +31,7 @@ namespace Read
         {
             foreach (TextBox box in textBoxes)
             {
-                if (!Regex.IsMatch(box.Text, "^[1-9]$"))
+                if (!Regex.IsMatch(box.Text, REGEX_TEXT_BOX_ANSWER))
                 {
                     return false;
                 }

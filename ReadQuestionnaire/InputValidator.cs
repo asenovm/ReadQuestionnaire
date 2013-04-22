@@ -26,30 +26,22 @@ namespace Read
             this.container = container;
         }
 
-        public bool ValidateAnswers(Question question) {
-            switch (question.type)
+        public bool ValidateAnswers(Question question)
+        {
+            if (question.type == QuestionType.MULTIPLE_CHOICE && !IsMultipleChoiceQuestionAnswered())
             {
-                case QuestionType.MULTIPLE_CHOICE:
-                    if (!IsMultipleChoiceQuestionAnswered())
-                    {
-                        prompt.ShowNotCheckedRadioPrompt();
-                        return false;
-                    }
-                    break;
-                case QuestionType.TABLE:
-                    if (!IsTableQuestionAnswered())
-                    {
-                        if (question.answerType == AnswerType.RADIO)
-                        {
-                            prompt.ShowNotCheckedRadioPrompt();
-                        }
-                        else
-                        {
-                            prompt.ShowNoInputPrompt();
-                        }
-                        return false;
-                    }
-                    break;
+                prompt.ShowNotCheckedRadioPrompt();
+                return false;
+            }
+            else if (question.type == QuestionType.TABLE && !IsTableQuestionAnswered() && question.answerType == AnswerType.RADIO)
+            {
+                prompt.ShowNotCheckedRadioPrompt();
+                return false;
+            }
+            else if (question.type == QuestionType.TABLE && !IsTableQuestionAnswered())
+            {
+                prompt.ShowNoInputPrompt();
+                return false;
             }
             return true;
         }
