@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace Read
 {
@@ -27,7 +28,7 @@ namespace Read
         {
             foreach (TextBox box in textBoxes)
             {
-                if (box.Text.Length == 0)
+                if (!Regex.IsMatch(box.Text, "^[1-9]$"))
                 {
                     return false;
                 }

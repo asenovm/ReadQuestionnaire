@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace Read
 {
@@ -26,9 +27,17 @@ namespace Read
 
         private const string TEXT_OPEN_OPTION = "Друго (напишете какво): ";
 
+        private const string DELIMITER_VALUE = ",";
+
+        private const string REGEX_OPEN_OPTION_ANSWER = "^[1-9]+$";
+
         private LinkedList<RadioGroup> radioGroups;
 
         private TextBoxGroup textBoxGroup;
+
+        private TextBox openOptionAnswerBox;
+
+        private TextBox openOptionQuestionBox;
 
         public QuestionTable(Control parent, Question question)
         {
@@ -70,7 +79,11 @@ namespace Read
 
         private void AttachOpenOptionAnswer(Question question, int row, int column)
         {
-            Controls.Add(GetControl(question, null, null), column, row);
+            openOptionAnswerBox = new TextBox();
+            openOptionAnswerBox.Multiline = true;
+            openOptionAnswerBox.Dock = DockStyle.Fill;
+            openOptionAnswerBox.Margin = new Padding(0);
+            Controls.Add(openOptionAnswerBox, column, row);
         }
 
         private Control GetOpenOptionControl()
@@ -85,10 +98,10 @@ namespace Read
             label.AutoSize = true;
             label.Margin = new Padding(0);
 
-            TextBox option = new TextBox();
+            openOptionQuestionBox = new TextBox();
 
             flowLayout.Controls.Add(label);
-            flowLayout.Controls.Add(option);
+            flowLayout.Controls.Add(openOptionQuestionBox);
 
             flowLayout.BackColor = BackgroundColor.YELLOW;
             flowLayout.Margin = new Padding(0);
@@ -104,7 +117,13 @@ namespace Read
                 areRadioGroupsFilled = areRadioGroupsFilled && group.HasChecked();
             }
 
-            return areRadioGroupsFilled && textBoxGroup.IsFilled();
+            bool isOpenOptionFilled = true;
+            if (openOptionQuestionBox != null && openOptionQuestionBox.Text.Length > 0)
+            {
+                isOpenOptionFilled = Regex.IsMatch(openOptionAnswerBox.Text, REGEX_OPEN_OPTION_ANSWER);
+            }
+
+            return areRadioGroupsFilled && textBoxGroup.IsFilled() && isOpenOptionFilled;
         }
 
         public string GetValue()
@@ -118,7 +137,7 @@ namespace Read
 
             for (int i = 1; i < radioGroups.Count; ++i)
             {
-                builder.Append(" ");
+                builder.Append(DELIMITER_VALUE);
                 builder.Append(radioGroups.ElementAt(i).GetCheckedValue());
             }
 
@@ -129,8 +148,14 @@ namespace Read
 
             for (int i = 1; i < textBoxGroup.Count; ++i)
             {
-                builder.Append(" ");
+                builder.Append(DELIMITER_VALUE);
                 builder.Append(textBoxGroup.ElementAt(i).Text);
+            }
+
+            if (openOptionQuestionBox != null && openOptionQuestionBox.Text.Length > 0)
+            {
+                builder.Append(DELIMITER_VALUE);
+                builder.Append(openOptionAnswerBox.Text);
             }
 
             return builder.ToString();
@@ -237,7 +262,7 @@ namespace Read
             return control;
         }
 
-        private Control GetTextBoxControl()
+        private TextBox GetTextBoxControl()
         {
             TextBox textBox = new TextBox();
             textBox.Multiline = true;

@@ -13,7 +13,7 @@ namespace Read
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Timeout = 2000;
+                request.Timeout = 750;
                 request.Credentials = CredentialCache.DefaultNetworkCredentials;
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
