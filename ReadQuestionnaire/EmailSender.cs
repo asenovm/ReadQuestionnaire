@@ -5,6 +5,7 @@ using System.Text;
 using System.Net.Mail;
 using System.Net;
 using System.IO;
+using System.Threading;
 
 namespace Read
 {
@@ -39,6 +40,8 @@ namespace Read
 
         private ConnectivityChecker connectivityChecker;
 
+        private IEmailSenderCallback callback;
+
         public EmailSender(string filePathOpenQuestions, string filePathMultipleChoiceQuestions, string filePathExperimentResults)
         {
             this.filePathOpenQuestions = filePathOpenQuestions;
@@ -56,14 +59,19 @@ namespace Read
         }
 
 
-        public void EmailAnswers()
+        public void EmailAnswers(IEmailSenderCallback callback)
         {
+            this.callback = callback;
+            Thread emailThread = new Thread(EmailAnswersInternal);
+            emailThread.Start();
+        }
+
+        private void EmailAnswersInternal() {
             if (!connectivityChecker.CanConnectTo(SERVER_URL))
             {
-                Console.WriteLine("cant connect!!!");
+                callback.OnEmailSendingFailed();
                 return;
             }
-            Console.WriteLine("can connect to mail server --> sending emails!");
 
             var fromAddress = new MailAddress(MAIL_SENDER_ADDRESS, MAIL_SENDER_NAME);
             var toAddress = new MailAddress(MAIL_RECEIVER_ADDRESS, MAIL_RECEIVER_NAME);
@@ -76,6 +84,7 @@ namespace Read
             message.Attachments.Add(new Attachment(filePathMultipleChoiceQuestions));
             message.Attachments.Add(new Attachment(filePathExperimentResults));
             smtp.Send(message);
+            callback.OnEmailSent();
         }
 
         private SmtpClient GetSmtpClient(MailAddress fromAddress)

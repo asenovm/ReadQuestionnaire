@@ -8,23 +8,18 @@ namespace Read
 {
     public class ConnectivityChecker
     {
+
+        private const int TIMEOUT_REQUEST = 750;
+
         public bool CanConnectTo(string url)
         {
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                request.Timeout = 750;
+                request.Timeout = TIMEOUT_REQUEST;
                 request.Credentials = CredentialCache.DefaultNetworkCredentials;
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return response.StatusCode == HttpStatusCode.OK;
             }
             catch
             {

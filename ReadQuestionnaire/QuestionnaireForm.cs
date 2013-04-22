@@ -13,7 +13,6 @@ namespace Read
 {
     public partial class MainContainer : Form
     {
-
         private const int PADDING_QUESTION_TITLE = 20;
 
         private RadioGroup group;

@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace Read
 {
-    public partial class PersonalInformationForm : Form
+    public partial class PersonalInformationForm : Form, IEmailSenderCallback
     {
 
         private AnswerRecorder answerRecorder;
@@ -30,7 +30,6 @@ namespace Read
             if (IsFormFilled())
             {
                 WriteAnswers();
-                CloseApplication();
             }
             else
             {
@@ -42,7 +41,7 @@ namespace Read
         private void WriteAnswers()
         {
             answerRecorder.WritePersonalInformation(ageBox.Text, maleRadio.Checked ? "0" : "1", majorDropDown.SelectedIndex.ToString());
-            emailSender.EmailAnswers();
+            emailSender.EmailAnswers(this);
         }
 
         private void CloseApplication()
@@ -59,6 +58,16 @@ namespace Read
         private void OnCloseRequired(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
+        }
+
+        public void OnEmailSent()
+        {
+            CloseApplication();
+        }
+
+        public void OnEmailSendingFailed()
+        {
+            CloseApplication();
         }
     }
 }

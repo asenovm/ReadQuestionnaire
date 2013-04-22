@@ -67,6 +67,7 @@
     </Compile>
     <Compile Include="EmailSender.cs" />
     <Compile Include="FileName.cs" />
+    <Compile Include="IEmailSenderCallback.cs" />
     <Compile Include="InputValidator.cs" />
     <Compile Include="NotificationPrompt.cs" />
     <Compile Include="PersonalInformationForm.cs">
