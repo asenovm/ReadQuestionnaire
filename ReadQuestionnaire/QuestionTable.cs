@@ -118,9 +118,9 @@ namespace Read
             }
 
             bool isOpenOptionFilled = true;
-            if (openOptionQuestionBox != null && openOptionQuestionBox.Text.Length > 0)
+            if (openOptionQuestionBox != null && (openOptionQuestionBox.Text.Length > 0 || openOptionAnswerBox.Text.Length > 0))
             {
-                isOpenOptionFilled = Regex.IsMatch(openOptionAnswerBox.Text, REGEX_OPEN_OPTION_ANSWER);
+                isOpenOptionFilled = Regex.IsMatch(openOptionAnswerBox.Text, REGEX_OPEN_OPTION_ANSWER) && openOptionQuestionBox.Text.Length > 0;
             }
 
             return areRadioGroupsFilled && textBoxGroup.IsFilled() && isOpenOptionFilled;
@@ -155,6 +155,8 @@ namespace Read
             if (openOptionQuestionBox != null && openOptionQuestionBox.Text.Length > 0)
             {
                 builder.Append(DELIMITER_VALUE);
+                builder.Append(openOptionQuestionBox.Text);
+                builder.Append(" ");
                 builder.Append(openOptionAnswerBox.Text);
             }
 
