@@ -27,6 +27,8 @@ namespace Read
 
         private const string TEXT_OPEN_OPTION = "Друго (напишете какво): ";
 
+        private const string TEXT_OPEN_OPTION_DEFAULT_ANSWER = "друго_няма";
+
         private const string DELIMITER_VALUE = ",";
 
         private const string REGEX_OPEN_OPTION_ANSWER = "^[1-9]+$";
@@ -158,6 +160,11 @@ namespace Read
                 builder.Append(openOptionQuestionBox.Text);
                 builder.Append(" ");
                 builder.Append(openOptionAnswerBox.Text);
+            }
+            else
+            {
+                builder.Append(DELIMITER_VALUE);
+                builder.Append(TEXT_OPEN_OPTION_DEFAULT_ANSWER);
             }
 
             return builder.ToString();

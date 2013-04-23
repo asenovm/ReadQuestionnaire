@@ -18,6 +18,8 @@ namespace Read
 
         private EmailSender emailSender;
 
+        private bool isWritingAnswers;
+
         public PersonalInformationForm(AnswerRecorder recorder, EmailSender sender)
         {
             InitializeComponent();
@@ -27,8 +29,13 @@ namespace Read
 
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
+            if (isWritingAnswers) {
+                return;
+            }
+
             if (IsFormFilled())
             {
+                isWritingAnswers = true;
                 WriteAnswers();
             }
             else
@@ -46,7 +53,6 @@ namespace Read
 
         private void CloseApplication()
         {
-            Close();
             Environment.Exit(0);
         }
 
