@@ -161,7 +161,7 @@ namespace Read
                 builder.Append(" ");
                 builder.Append(openOptionAnswerBox.Text);
             }
-            else
+            else if (openOptionQuestionBox != null)
             {
                 builder.Append(DELIMITER_VALUE);
                 builder.Append(TEXT_OPEN_OPTION_DEFAULT_ANSWER);
