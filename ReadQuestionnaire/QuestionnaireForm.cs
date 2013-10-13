@@ -23,8 +23,6 @@ namespace Read
 
         private AnswerRecorder multipleChoiceRecorder;
 
-        private EmailSender sender;
-
         private InputValidator validator;
 
         public QuestionnaireForm(string questionnairePath)
@@ -95,8 +93,8 @@ namespace Read
         {
             questionHolder.Controls.Clear();
             questionHolder.Visible = false;
-            questionHolder.Width = 845;
-            questionHolder.Height = 300;
+            questionHolder.Width = 885;
+            questionHolder.Height = 340;
             questionHolder.Left = 48;
             questionHolder.Top = 116;
 

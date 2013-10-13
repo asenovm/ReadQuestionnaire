@@ -12,7 +12,7 @@ namespace Read
             //blank
         }
 
-        private static Guid UID= Guid.NewGuid();
+        public static Guid UID= Guid.NewGuid();
 
         public static string CONFIGURATION_CLIENT = "client.dat";
 

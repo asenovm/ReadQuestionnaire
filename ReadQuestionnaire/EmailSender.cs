@@ -32,21 +32,12 @@ namespace Read
 
         private string senderPassword;
 
-        private string filePathOpenQuestions;
-
-        private string filePathMultipleChoiceQuestions;
-
-        private string filePathExperimentResults;
-
         private ConnectivityChecker connectivityChecker;
 
         private IEmailSenderCallback callback;
 
-        public EmailSender(string filePathOpenQuestions, string filePathMultipleChoiceQuestions, string filePathExperimentResults)
+        public EmailSender()
         {
-            this.filePathOpenQuestions = filePathOpenQuestions;
-            this.filePathMultipleChoiceQuestions = filePathMultipleChoiceQuestions;
-            this.filePathExperimentResults = filePathExperimentResults;
             this.connectivityChecker = new ConnectivityChecker();
             ReadEmailSenderPassword();
         }
@@ -80,9 +71,10 @@ namespace Read
 
             message.Subject = MAIL_SUBJECT;
             message.Body = MAIL_BODY;
-            message.Attachments.Add(new Attachment(filePathOpenQuestions));
-            message.Attachments.Add(new Attachment(filePathMultipleChoiceQuestions));
-            message.Attachments.Add(new Attachment(filePathExperimentResults));
+            message.Attachments.Add(new Attachment(FileName.RESULTS_EXPERIMENT));
+            message.Attachments.Add(new Attachment(FileName.RESULTS_EXPERIMENT_NOTIFICATIONS));
+            message.Attachments.Add(new Attachment(FileName.RESULTS_MULTIPLE_CHOICE));
+            message.Attachments.Add(new Attachment(FileName.RESULTS_OPEN_ANSWER));
             smtp.Send(message);
             callback.OnEmailSent();
         }

@@ -9,7 +9,7 @@ namespace Read
     public class ConnectivityChecker
     {
 
-        private const int TIMEOUT_REQUEST = 750;
+        private const int TIMEOUT_REQUEST = 1000;
 
         public bool CanConnectTo(string url)
         {

@@ -13,10 +13,17 @@ namespace Read
 
         private string resultsFilePath;
 
-        private static string ANSWER_DELIMITER = ",";
+        private string answerDelimiter;
 
-        public AnswerRecorder(string resultsFilePath) {
+        private static string ANSWER_DELIMITER_DEFAULT = ",";
+
+        public AnswerRecorder(string resultsFilePath) : this(resultsFilePath, ANSWER_DELIMITER_DEFAULT) { 
+            //blank
+        }
+
+        public AnswerRecorder(string resultsFilePath, string answerDelimiter) {
             this.resultsFilePath = resultsFilePath;
+            this.answerDelimiter = answerDelimiter;
         }
 
         public void WriteAnswer(string answer) {
@@ -38,7 +45,7 @@ namespace Read
             writer.Write(answer);
 
             if (isAddingDelimiter) {
-                writer.Write(ANSWER_DELIMITER);
+                writer.Write(answerDelimiter);
             }
 
             if (isAddingNewLine) {

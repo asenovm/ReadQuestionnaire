@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Read
 {
@@ -22,7 +23,7 @@ namespace Read
         {
             InitializeComponent();
             answerRecorder = new AnswerRecorder(FileName.RESULTS_MULTIPLE_CHOICE);
-            emailSender = new EmailSender(FileName.RESULTS_OPEN_ANSWER, FileName.RESULTS_MULTIPLE_CHOICE, FileName.RESULTS_EXPERIMENT); ;
+            emailSender = new EmailSender(); ;
         }
 
         private void OnNextButtonClicked(object sender, EventArgs e)
@@ -30,6 +31,7 @@ namespace Read
             if (IsFormFilled())
             {
                 WriteAnswers();
+                Hide();
             }
             else
             {
@@ -42,8 +44,13 @@ namespace Read
         {
             answerRecorder.WriteAnswer("", true);
             answerRecorder.WriteAnswer(ageBox.Text, true);
-            answerRecorder.WriteAnswer(maleRadio.Checked ? "0" : "1");
-            answerRecorder.WriteAnswer(majorDropDown.SelectedIndex.ToString());
+            answerRecorder.WriteAnswer(maleRadio.Checked ? "0" : "1", true);
+            answerRecorder.WriteAnswer(majorDropDown.SelectedIndex.ToString(), false);
+            Thread emailThread = new Thread(EmailAnswers);
+            emailThread.Start();
+        }
+
+        private void EmailAnswers() {
             emailSender.EmailAnswers(this);
         }
 
