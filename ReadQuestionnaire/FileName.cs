@@ -12,11 +12,17 @@ namespace Read
             //blank
         }
 
-        public static string RESULTS_EXPERIMENT = "results_experiment_";
+        private static Guid UID= Guid.NewGuid();
 
-        public static string RESULTS_OPEN_ANSWER = "results_questionnaire_open_";
+        public static string CONFIGURATION_CLIENT = "client.dat";
 
-        public static string RESULTS_MULTIPLE_CHOICE = "results_questionnaire_multiple_choice_";
+        public static string RESULTS_EXPERIMENT = "results_experiment_" + UID + ".txt";
+
+        public static string RESULTS_OPEN_ANSWER = "results_questionnaire_open_" + UID + ".txt";
+
+        public static string RESULTS_MULTIPLE_CHOICE = "results_questionnaire_multiple_choice_" + UID + ".txt";
+
+        public static string RESULTS_EXPERIMENT_NOTIFICATIONS = "results_experiment_notifications_" + UID + ".txt";
 
         public static string QUESTIONS_ECONOMIC = "questions.dat";
 

@@ -5,7 +5,6 @@ c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQues
 c:\users\martin\documents\visual studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ReadQuestionnaire.pdb
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\Newtonsoft.Json.xml
-C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.MainContainer.resources
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.Properties.Resources.resources
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.EconomicInstructionForm.resources
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\bin\Debug\ReadQuestionnaire.dll.config
@@ -13,3 +12,4 @@ C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQues
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\ReadQuestionnaire.dll
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.PersonalInformationForm.resources
 C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.TraitsInstructionForm.resources
+C:\Users\martin\Documents\Visual Studio 2010\Projects\ReadQuestionnaire\ReadQuestionnaire\obj\x86\Debug\Read.QuestionnaireForm.resources

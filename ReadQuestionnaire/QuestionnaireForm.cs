@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace Read
 {
-    public partial class MainContainer : Form
+    public partial class QuestionnaireForm : Form
     {
         private const int PADDING_QUESTION_TITLE = 20;
 
@@ -19,26 +19,23 @@ namespace Read
 
         private Questionnaire questionnaire;
 
-        private AnswerRecorder recorder;
+        private AnswerRecorder openAnswerRecorder;
+
+        private AnswerRecorder multipleChoiceRecorder;
 
         private EmailSender sender;
 
         private InputValidator validator;
 
-        private string outputFileId;
-
-        public MainContainer(string outputFileId, string questionsFilePath)
+        public QuestionnaireForm(string questionnairePath)
         {
             InitializeComponent();
 
-            this.outputFileId = outputFileId;
+            questionnaire = new Questionnaire(questionnairePath);
 
-            string filePathOpenAnswer = FileName.RESULTS_OPEN_ANSWER + outputFileId;
-            string filePathMultipleChoiceAnswer = FileName.RESULTS_MULTIPLE_CHOICE + outputFileId;
+            openAnswerRecorder = new AnswerRecorder(FileName.RESULTS_OPEN_ANSWER);
+            multipleChoiceRecorder = new AnswerRecorder(FileName.RESULTS_MULTIPLE_CHOICE);
 
-            questionnaire = new Questionnaire(questionsFilePath);
-            recorder = new AnswerRecorder(filePathOpenAnswer, filePathMultipleChoiceAnswer);
-            sender = new EmailSender(filePathOpenAnswer, filePathMultipleChoiceAnswer, FileName.RESULTS_EXPERIMENT + outputFileId);
             group = new RadioGroup();
             validator = new InputValidator(answerBox, group, questionHolder);
 
@@ -54,27 +51,44 @@ namespace Read
                 return;
             }
 
+            WriteAnswer(currentQuestion);
+
             if (questionnaire.HasNextQuestion())
             {
-                recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last && questionnaire.IsLastQuestionnaire());
-
                 ShowNextQuestion();
             }
             else
             {
                 Hide();
-                recorder.WriteAnswer(currentQuestion, group, questionHolder, answerBox, currentQuestion.Last && questionnaire.IsLastQuestionnaire());
                 if (questionnaire.IsLastQuestionnaire())
                 {
-                    new PersonalInformationForm(this.recorder, this.sender).Show();
+                    new PersonalInformationForm().Show();
                 }
                 else
                 {
-                    new TraitsInstructionForm(outputFileId).Show();
+                    new TraitsInstructionForm().Show();
                 }
             }
+        }
 
-
+        private void WriteAnswer(Question currentQuestion)
+        {
+            bool isLastQuestion = currentQuestion.Last && questionnaire.IsLastQuestionnaire();
+            if (currentQuestion.type == QuestionType.OPEN)
+            {
+                openAnswerRecorder.WriteAnswer(answerBox.Text);
+            }
+            else if (currentQuestion.type == QuestionType.MULTIPLE_CHOICE)
+            {
+                multipleChoiceRecorder.WriteAnswer(group.GetCheckedValue(), !isLastQuestion);
+            }
+            else
+            {
+                IEnumerator enumerator = questionHolder.Controls.GetEnumerator();
+                enumerator.MoveNext();
+                QuestionTable table = enumerator.Current as QuestionTable;
+                multipleChoiceRecorder.WriteAnswer(table.GetValue(), !isLastQuestion);
+            }
         }
 
         private void ResetLayout()

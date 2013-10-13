@@ -18,24 +18,17 @@ namespace Read
 
         private EmailSender emailSender;
 
-        private bool isWritingAnswers;
-
-        public PersonalInformationForm(AnswerRecorder recorder, EmailSender sender)
+        public PersonalInformationForm()
         {
             InitializeComponent();
-            answerRecorder = recorder;
-            emailSender = sender;
+            answerRecorder = new AnswerRecorder(FileName.RESULTS_MULTIPLE_CHOICE);
+            emailSender = new EmailSender(FileName.RESULTS_OPEN_ANSWER, FileName.RESULTS_MULTIPLE_CHOICE, FileName.RESULTS_EXPERIMENT); ;
         }
 
         private void OnNextButtonClicked(object sender, EventArgs e)
         {
-            if (isWritingAnswers) {
-                return;
-            }
-
             if (IsFormFilled())
             {
-                isWritingAnswers = true;
                 WriteAnswers();
             }
             else
@@ -47,7 +40,10 @@ namespace Read
 
         private void WriteAnswers()
         {
-            answerRecorder.WritePersonalInformation(ageBox.Text, maleRadio.Checked ? "0" : "1", majorDropDown.SelectedIndex.ToString());
+            answerRecorder.WriteAnswer("", true);
+            answerRecorder.WriteAnswer(ageBox.Text, true);
+            answerRecorder.WriteAnswer(maleRadio.Checked ? "0" : "1");
+            answerRecorder.WriteAnswer(majorDropDown.SelectedIndex.ToString());
             emailSender.EmailAnswers(this);
         }
 

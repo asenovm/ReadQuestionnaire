@@ -76,7 +76,6 @@
     <Compile Include="PersonalInformationForm.Designer.cs">
       <DependentUpon>PersonalInformationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Questionnaire.cs" />
     <Compile Include="QuestionnaireForm.cs">

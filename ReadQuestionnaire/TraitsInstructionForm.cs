@@ -12,18 +12,20 @@ namespace Read
     public partial class TraitsInstructionForm : Form
     {
 
-        private string outputFileId;
-
-        public TraitsInstructionForm(string outputFileId)
+        public TraitsInstructionForm()
         {
             InitializeComponent();
-            this.outputFileId = outputFileId;
         }
 
         private void OnBeginButtonClicked(object sender, EventArgs e)
         {
             Hide();
-            new MainContainer(outputFileId, FileName.QUESTIONS_PERSONAL).Show();
+            new QuestionnaireForm(FileName.QUESTIONS_PERSONAL).Show();
+        }
+
+        private void OnCloseRequired(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
         }
     }
 }

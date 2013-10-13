@@ -10,14 +10,13 @@ namespace Read
     {
         public static Control from(Question question, Control parent, string answer)
         {
-            switch (question.type)
+            if (question.type == QuestionType.MULTIPLE_CHOICE)
             {
-                case QuestionType.MULTIPLE_CHOICE:
-                    return new QuestionRadioControl(parent, question, answer);
-                case QuestionType.TABLE:
-                    return new QuestionTable(parent, question);
-                default:
-                    return new QuestionTable(parent, question);
+                return new QuestionRadioControl(parent, question, answer);
+            }
+            else
+            {
+                return new QuestionTable(parent, question);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Read
 {
-    partial class MainContainer
+    partial class QuestionnaireForm
     {
         /// <summary>
         /// Required designer variable.

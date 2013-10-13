@@ -11,87 +11,41 @@ namespace Read
     public class AnswerRecorder
     {
 
-        private string filePathOpenQuestions;
+        private string resultsFilePath;
 
-        private string filePathMultipleChoiceQuestions;
+        private static string ANSWER_DELIMITER = ",";
 
-        private const string DELIMITER_ANSWER = ",";
-
-        public AnswerRecorder(string filePathOpenQuestions, string filePathMultipleChoiceQuestions)
-        {
-            this.filePathOpenQuestions = filePathOpenQuestions;
-            this.filePathMultipleChoiceQuestions = filePathMultipleChoiceQuestions;
+        public AnswerRecorder(string resultsFilePath) {
+            this.resultsFilePath = resultsFilePath;
         }
 
-        public void WriteAnswer(Question question, RadioGroup group, Control container, TextBox answerBox, bool isLastQuestion)
+        public void WriteAnswer(string answer) {
+            WriteAnswer(answer, false, true);
+        }
+
+        public void WriteAnswer(string answer, bool isAddingDelimiter)
         {
-            switch (question.type)
-            {
-                case QuestionType.OPEN:
-                    WriteOpenAnswer(answerBox.Text);
-                    break;
-                case QuestionType.MULTIPLE_CHOICE:
-                    QuestionRadioControl radioControl = GetControl(container) as QuestionRadioControl;
-                    WriteAnswer(group.GetCheckedValue(), !isLastQuestion);
-                    break;
-                default:
-                    QuestionTable table = GetControl(container) as QuestionTable;
-                    WriteAnswer(table.GetValue(), !isLastQuestion);
-                    break;
+            WriteAnswer(answer, isAddingDelimiter, false);
+        }
+
+        private void WriteAnswer(string answer, bool isAddingDelimiter, bool isAddingNewLine) {
+            StreamWriter writer = File.AppendText(resultsFilePath);
+
+            if (isAddingNewLine) {
+                writer.WriteLine();
             }
-        }
 
-        public void WritePersonalInformation(string age, string gender, string major)
-        {
-            WriteDelimiter();
-            WriteAnswer(age, true);
-            WriteAnswer(gender, true);
-            WriteAnswer(major, false);
-        }
-
-        public string GetOpenAnswer()
-        {
-            return filePathOpenQuestions;
-        }
-
-        public string GetMultipleChoiceAnswer()
-        {
-            return filePathMultipleChoiceQuestions;
-        }
-
-        private void WriteOpenAnswer(string answer)
-        {
-            StreamWriter writer = File.AppendText(filePathOpenQuestions);
-            writer.WriteLine();
             writer.Write(answer);
-            writer.WriteLine();
-            writer.Close();
-        }
 
-        private void WriteAnswer(string answer, bool isAddingDelimiter)
-        {
-            StreamWriter writer = File.AppendText(filePathMultipleChoiceQuestions);
-            writer.Write(answer);
-            if (isAddingDelimiter)
-            {
-                writer.Write(DELIMITER_ANSWER);
+            if (isAddingDelimiter) {
+                writer.Write(ANSWER_DELIMITER);
             }
+
+            if (isAddingNewLine) {
+                writer.WriteLine();
+            }
+
             writer.Close();
-        }
-
-        private void WriteDelimiter() {
-            StreamWriter writer = File.AppendText(filePathMultipleChoiceQuestions);
-            writer.Write(DELIMITER_ANSWER);
-            writer.Close();
-        }
-
-
-
-        private Control GetControl(Control container)
-        {
-            IEnumerator enumerator = container.Controls.GetEnumerator();
-            enumerator.MoveNext();
-            return enumerator.Current as Control;
         }
 
     }

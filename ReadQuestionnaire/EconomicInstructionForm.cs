@@ -11,18 +11,16 @@ namespace Read
 {
     public partial class EconomicInstructionForm : Form
     {
-        private string outputFileId;
 
-        public EconomicInstructionForm(string outputFileId)
+        public EconomicInstructionForm()
         {
             InitializeComponent();
-            this.outputFileId = outputFileId;
         }
 
         private void OnBeginButtonClicked(object sender, EventArgs e)
         {
             Hide();
-            new MainContainer(outputFileId, FileName.QUESTIONS_ECONOMIC).Show();
+            new QuestionnaireForm(FileName.QUESTIONS_ECONOMIC).Show();
         }
 
         private void OnCloseRequired(object sender, FormClosingEventArgs e)
